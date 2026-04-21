@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-200: #ffbf00;
+  --color-primary-100: #ffc929;
+  --color-secondary-200: #00b050;
+  --color-secondary-100: #0b1a78;
+}
+body{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  @apply bg-blue-50 text-neutral-700
+}
