@@ -21,6 +21,7 @@ const CategoryPage = () => {
   })
 
   const [openConfirmBoxDelete, setopenConfirmBoxDelete] = useState(false)
+
   const [deleteCategory, setdeleteCategory] = useState({
     _id: ""
   })
@@ -73,7 +74,7 @@ const CategoryPage = () => {
       if (success) {
         toast.success(responseData.message)
       
-        // fetchCategory()
+        fetchCategory()
         setopenConfirmBoxDelete(false)
       }
     } catch (error) {

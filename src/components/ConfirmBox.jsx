@@ -13,7 +13,7 @@ const ConfirmBox = ({cancel, confirm, close}) => {
             <p className='my-4'>Are you sure you want to delete this category ?</p>
             <div className='w-fit ml-auto flex items-center gap-3'>
                 <button onClick={cancel} className='px-4 py-1 border border-red-500 cursor-pointer text-red-500 hover:bg-red-500 hover:text-white rounded '>Cancel</button>
-                <button onClick={confirm} className=' cursor-pointer px-4 py-1 border rounded ' >Cofirm</button>
+                <button onClick={confirm} className=' cursor-pointer px-4 py-1 border rounded ' >Confirm</button>
             </div>
         </div>
     </div>
