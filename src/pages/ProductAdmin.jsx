@@ -31,7 +31,7 @@ const ProductAdmin = () => {
         if(responseData.success){
           setTotalPageCount(responseData.totalNoPage)
           setProductData(responseData.data)
-          console.log(responseData)
+          // console.log("ProductAdmin.jsx",responseData)
         }
 
     } catch (error) {
@@ -47,12 +47,12 @@ const ProductAdmin = () => {
 
   const handleNext = ()=>{
     if(page !== totalPageCount){
-      setPage(preve => preve + 1)
+      setPage(prev => prev + 1)
     }
   }
   const handlePrevious = ()=>{
     if(page > 1){
-      setPage(preve => preve - 1)
+      setPage(prev => prev - 1)
     }
   }
 
@@ -64,15 +64,16 @@ const ProductAdmin = () => {
 
   useEffect(()=>{
     let flag = true 
-
+    // Debouncing search 
     const interval = setTimeout(() => {
       if(flag){
         fetchProductData()
         flag = false
       }
-    }, 300);
+    }, 300); // 300ms delay
 
     return ()=>{
+      // Cleanup function to clear the timeout 
       clearTimeout(interval)
     }
   },[search])
