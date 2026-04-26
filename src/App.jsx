@@ -5,14 +5,15 @@ import { Toaster } from "react-hot-toast";
 import fetchUserDetails from "./utils/fetchUserDetails";
 import { setUserDetails } from "./Slice/userSlice";
 import { useDispatch } from "react-redux";
-import { setAllCategory, setAllSubCategory } from "./Slice/productSlice";
+import { setAllCategory, setAllSubCategory, setLoadingCategory } from "./Slice/productSlice";
 import axios from "./utils/axios";
 import { SummaryApi } from "./common/SummaryApi";
 import fetchCategory from "./utils/fetchCategory";
+import AxiosToastError from "./utils/AxiosToastError";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
     try {
@@ -21,9 +22,9 @@ const App = () => {
 
       dispatch(setUserDetails(data));
     } catch (error) {
-      console.log(error);
+      
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
@@ -31,18 +32,16 @@ const App = () => {
 
 
     try {
-      // const accessToken = localStorage.getItem("accessToken");
-      // const refreshToken = localStorage.getItem("refreshToken");
-
-      // if (accessToken && refreshToken) {}
+      dispatch(setLoadingCategory(true))
       const allCategoryData = await fetchCategory();
       const data = allCategoryData?.data;
 
       dispatch(setAllCategory(data));
-  //  console.log(data)
     } catch (error) {
-      console.log(error);
-    } 
+      
+    }finally{
+       dispatch(setLoadingCategory(false))
+    }
   };
 
  const fetchSubCategory = async()=>{
@@ -59,7 +58,7 @@ const App = () => {
       
       }
     } catch (error) {
-      AxiosToastError(error)
+      
     }
   }
 
@@ -69,9 +68,9 @@ const App = () => {
     fetchSubCategory()
   }, []);
 
-  if (isLoading) {
-    return <div className="flex justify-center items-center h-screen text-3xl">Loading...</div>; // Or your Loading component
-  }
+  // if (isLoading) {
+  //   return <div className="flex justify-center items-center h-screen text-3xl">Loading...</div>; // Or your Loading component
+  // }
 
   return (
     <>
