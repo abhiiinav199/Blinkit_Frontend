@@ -20,6 +20,7 @@ import UploadProduct from "../pages/UploadProduct"
 import ProductAdmin from "../pages/ProductAdmin"
 import ProtectedRoute from "../components/ProtectedRoute"
 import AdminPermision from "../layout/AdminPermision"
+import ProductListPage from "../pages/ProductListPage"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <>
@@ -46,6 +47,7 @@ const Routing = () => {
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="user" element={<UserMenuMobile />} />
 
+          {/* Dashboard Routes */}
           <Route path="dashboard" element={
             
             <ProtectedRoute>
@@ -87,6 +89,9 @@ const Routing = () => {
             <Route path="address" element={<Address/>}/>
            
           </Route>
+
+          {/* Product List Page Route */}
+          <Route path=":category/:subcategory" element={<ProductListPage />} />
 
 
         </Route>
