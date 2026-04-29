@@ -2,32 +2,31 @@ import React from "react";
 import banner from "../assets/banner.jpg";
 import mobile_banner from "../assets/banner-mobile.jpg";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ValidUrlConvert from "../utils/ValidUrlConvert";
+import CategoryWiseProductDisplay from "../components/CategoryWiseProductDisplay";
 const Home = () => {
   const loadingCategory = useSelector((state) => state.product.loadingCategory);
   const categoryData = useSelector((state) => state.product.allCategory);
   const subCategoryData = useSelector((state) => state.product.allSubCategory);
   const navigate = useNavigate();
   // console.log("subcategoryData", subCategoryData);
-  // console.log("categoryData", categoryData);
+  console.log("categoryData", categoryData);
 
   const handleRedirectProductListPage = (id, name) => {
     const subCategory = subCategoryData.find((sub) => {
       const filterData = sub.category.some((c) => {
-        // return c._id === id
-        // console.log("Comparing:", c, "with", id); // Add this
-        return c._id === id || c === id;
+        
+        return c._id === id
       });
-      // console.log("filterdata", filterData);
+     
       return filterData ? true : false;
     });
     console.log("subcategory", subCategory);
 
-    const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`
+    const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
 
-    navigate(url)
-    console.log(`${name}-${id}/${subCategory.name}-${subCategory._id}`)
+    navigate(url);
   };
   return (
     <main className="min-h-[78vh]">
@@ -48,6 +47,8 @@ const Home = () => {
             />
           </div>
         </div>
+
+        {/* Category Section */}
         <div className="container mx-auto px-4 grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-10 gap-2">
           {loadingCategory
             ? new Array(12).fill(null).map((c, index) => (
@@ -77,6 +78,12 @@ const Home = () => {
                 </div>
               ))}
         </div>
+
+        {/* display category product */}
+
+        {categoryData.map((item, index) => (
+          <CategoryWiseProductDisplay key={index} id={item?._id} name={item?.name}/>
+        ))}
       </section>
     </main>
   );
