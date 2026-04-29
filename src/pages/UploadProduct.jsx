@@ -373,7 +373,6 @@ const UploadProduct = () => {
                     name='discount'//connected with handleOnChange
                     value={data.discount}//connectd with useState
                     onChange={handleChange}
-                    required
                     className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
                   />
                 </div>
