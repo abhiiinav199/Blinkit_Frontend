@@ -17,6 +17,7 @@ const SubCategory = () => {
   const [openAddSubCategory,setOpenAddSubCategory] = useState(false)
   const [data,setData] = useState([])
   const [loading,setLoading] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(15)
   const columnHelper = createColumnHelper()
   const [ImageURL,setImageURL] = useState("")
   const [openEdit,setOpenEdit] = useState(false)
@@ -55,6 +56,20 @@ const SubCategory = () => {
     fetchSubCategory()
   },[])
   // console.log(data)
+
+  // Infinite scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      // Detect when user reaches near bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setVisibleCount((prev) => prev + 10);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Clean up event listener properly
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
 // table column
   const column = [
@@ -145,9 +160,14 @@ const SubCategory = () => {
 
         <div className='overflow-auto w-full max-w-[95vw]'>
             <DisplayTable
-                data={data}
+                data={data.slice(0, visibleCount)}
                 column={column}
             />
+            {visibleCount < data.length && (
+              <div className='py-4 text-center text-slate-500 font-medium'>
+                Loading more...
+              </div>
+            )}
         </div>
 
 
