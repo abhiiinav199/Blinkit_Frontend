@@ -111,15 +111,16 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
   }
 
   const handleSubmit = async (e) => {
+    // Need to make this api in backend
     e.preventDefault()
-    console.log("data", data)
 
     try {
       const response = await axios({
-        ...SummaryApi.updateProductDetails,
+        ...SummaryApi.updateProduct,
         data: data
       })
       const { data: responseData } = response
+      console.log(responseData)
 
       if (responseData.success) {
         successAlert(responseData.message)
@@ -373,7 +374,6 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                   name='discount'
                   value={data.discount}
                   onChange={handleChange}
-                  required
                   className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
                 />
               </div>
@@ -413,7 +413,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                 Add Fields
               </div>
 
-              <button
+              <button type='submit'
                 className='bg-primary-100 hover:bg-primary-200 py-2 rounded font-semibold'
               >
                 Update Product

@@ -92,14 +92,14 @@ export const SummaryApi= {
         url : "api/product/delete",
         method: "delete"
     },
-    updateProduct:{
-        url : "api/product/update",
-        method: "put"
-    },
     getProductByCategory:{
         url : "api/product/get-product-by-category",
         method: "post"
-    }
+    },
+    // updateProduct:{
+    //     url : "api/product/update",
+    //     method: "put"
+    // },
 
     
 
