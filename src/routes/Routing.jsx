@@ -21,6 +21,7 @@ import ProductAdmin from "../pages/ProductAdmin"
 import ProtectedRoute from "../components/ProtectedRoute"
 import AdminPermision from "../layout/AdminPermision"
 import ProductListPage from "../pages/ProductListPage"
+import ProductDisplayPage from "../pages/ProductDisplayPage"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <>
@@ -92,7 +93,8 @@ const Routing = () => {
 
           {/* Product List Page Route */}
           <Route path=":category/:subcategory" element={<ProductListPage />} />
-
+          
+          <Route path=":product" element={<ProductDisplayPage />}/>
 
         </Route>
 
