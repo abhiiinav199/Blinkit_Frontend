@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ValidUrlConvert from '../utils/ValidUrlConvert'
 
 const CardProduct = ({data}) => {
-  const url = `/${ValidUrlConvert(data.name)}-${data._id}`
+  const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`
   return (
    <Link to={url  }  className="border p-4 grid gap-3 max-w-52 lg:min-w-52 rounded  ">
       {/* 1st Image Section */}
