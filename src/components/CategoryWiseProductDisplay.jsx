@@ -23,7 +23,6 @@ const CategoryWiseProductDisplay = ({id,name}) => {
         }
       })
       const {data :responseData} = res
-      console.log("CategoryWiseProductDisplay",responseData)
    
       if(responseData?.success){
         setdata(responseData?.data)
@@ -57,7 +56,7 @@ const CategoryWiseProductDisplay = ({id,name}) => {
           </div>
 
          {/* Skeleton Loading */}
-          <div className="container mx-auto flex items-center gap-4 md:gap-6 lg:gap-8 px-4 overflow-hidden scroll-smooth" ref={containerRef}>
+          <div className="container mx-auto flex items-center gap-4 md:gap-6 lg:gap-8 px-4  overflow-x-auto scrollbar-none  scroll-smooth" ref={containerRef}>
             {
               loading &&
               loadingCardNumber.map((_, index) =>(
@@ -67,11 +66,11 @@ const CategoryWiseProductDisplay = ({id,name}) => {
             }
 
             {/* Maping over data */}
-            {
-            data?.map((item, index) =>(
-              <CardProduct key={index} data={item}/>
-            ))
-            }
+              {
+              data?.map((item, index) =>(
+                <CardProduct key={index} data={item}/>
+              ))
+              }
 
             <div className="w-full left-0 right-0 px-2 container mx-auto absolute hidden lg:flex justify-between">
               <button onClick={handleScrollLeft} className="relative  bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleLeft/></button>

@@ -6,24 +6,24 @@ import ValidUrlConvert from '../utils/ValidUrlConvert'
 const CardProduct = ({data}) => {
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`
   return (
-   <Link to={url  }  className="border p-4 grid gap-3 max-w-52 lg:min-w-52 rounded  ">
+   <Link to={url} className="border lg:p-4 grid gap-2 lg:gap-3 max-w-32 lg:min-w-52 rounded  ">
       {/* 1st Image Section */}
-      <div className="min-h-20 max-h-32  rounded ">
+      <div className="min-h-20 w-full max-h-24 lg:max-h-32  rounded ">
         <img src={data.image[0]} alt={data.name} className="w-full h-full object-scale-down lg:scale-120" />
       </div>
 
      
-      <div className= "p-[1px] px-3 text-sm w-fit rounded text-green-600 bg-green-50">10min</div>
+      <div className= "p-[1px] px-3 text-xs w-fit rounded text-green-600 bg-green-50">10min</div>
 
-      <div className="font-medium text-ellipsis line-clamp-2 ">
+      <div className="px-1 font-medium text-ellipsis text-sm lg:text-base line-clamp-2 ">
         {data?.name}
       </div>
 
-      <div className="w-fit">
+      <div className="w-fit px-1 text-sm lg:text-base">
         {data?.unit}
       </div>
 
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-3 text-sm :lg:text-base">
          <div className="font-semibold">
           {DisplayPriceInRupees(data.price) }
          </div>
