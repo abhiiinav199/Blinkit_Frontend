@@ -56,7 +56,8 @@ const CategoryWiseProductDisplay = ({id,name}) => {
           </div>
 
          {/* Skeleton Loading */}
-          <div className="container mx-auto flex items-center gap-4 md:gap-6 lg:gap-8 px-4  overflow-x-auto scrollbar-none  scroll-smooth" ref={containerRef}>
+          <div className="relative flex items-center">
+            <div className="container mx-auto flex gap-4 md:gap-6 lg:gap-8 px-4  overflow-x-auto scrollbar-none  scroll-smooth" ref={containerRef}>
             {
               loading &&
               loadingCardNumber.map((_, index) =>(
@@ -72,10 +73,12 @@ const CategoryWiseProductDisplay = ({id,name}) => {
               ))
               }
 
-            <div className="w-full left-0 right-0 px-2 container mx-auto absolute hidden lg:flex justify-between">
+            </div>
+
+             <div className="w-full left-0 right-0 px-2 container mx-auto absolute hidden lg:flex justify-between">
               <button onClick={handleScrollLeft} className="relative  bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleLeft/></button>
               <button onClick={handleScrollRight} className="relative bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleRight/></button>
-            </div>
+          </div>
           </div>
         </div>
   )
