@@ -10,23 +10,38 @@ const Home = () => {
   const categoryData = useSelector((state) => state.product.allCategory);
   const subCategoryData = useSelector((state) => state.product.allSubCategory);
   const navigate = useNavigate();
-  
 
+ //keep this one- Industry Standards
   const handleRedirectProductListPage = (id, name) => {
-    // console.log(id, name)
-    const subCategory = subCategoryData?.find(sub =>{
-      const filterData = sub.category.some(c=>{
-        return c._id === id
-      })
+    console.log(id, name)
+    const subCategory = subCategoryData?.find(sub => {
+      const filterData= sub?.category.some(cat=> cat?._id === id) // some() method checks if at least one element in the array passes the test implemented by the provided function, and returing direct.
+      
       return filterData
-      // console.log("Sub",sub)
-    })
-    console.log("handleRedirectProductListPage", subCategory)
+    });
+    console.log("handleRedirectProductListPage", subCategory);
     
-    const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(name)}-${subCategory._id}`;
-
+    const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
+    
     navigate(url);
   };
+  // const handleRedirectProductListPage = (id, name) => {
+  //   console.log(id, name)
+  //   const subCategory = subCategoryData?.find(sub => {
+  //     const filterData= sub?.category.some(cat=> {
+  //       return cat._id === id
+  //     })
+      
+  //     return filterData
+  //   });
+    
+  //   const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
+    
+  //   navigate(url);
+  //   console.log("handleRedirectProductListPage", subCategory);
+  // };
+
+  
   return (
     <main className="min-h-[78vh]">
       <section className="bg-white">
@@ -81,7 +96,11 @@ const Home = () => {
         {/* display category product */}
 
         {categoryData.map((item, index) => (
-          <CategoryWiseProductDisplay key={index} id={item?._id} name={item?.name}/>
+          <CategoryWiseProductDisplay
+            key={index}
+            id={item?._id}
+            name={item?.name}
+          />
         ))}
       </section>
     </main>

@@ -37,7 +37,6 @@ const ProductListPage = () => {
       })
 
       const { data: responseData } = res
-      console.log(responseData)
       if (responseData?.success) {
         if (responseData.page === 1) {
           setData(responseData.data)
