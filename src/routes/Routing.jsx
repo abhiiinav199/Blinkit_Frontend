@@ -92,7 +92,7 @@ const Routing = () => {
           </Route>
 
           {/* Product List Page Route */}
-          <Route path=":category/:subcategory" element={<ProductListPage />} />
+          <Route path=":category/:subCategory" element={<ProductListPage />} />
           
           <Route path="product/:product" element={<ProductDisplayPage />}/>
 
