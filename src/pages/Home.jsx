@@ -11,37 +11,39 @@ const Home = () => {
   const subCategoryData = useSelector((state) => state.product.allSubCategory);
   const navigate = useNavigate();
 
- //keep this one- Industry Standards
+  //keep this one- Industry Standards
   const handleRedirectProductListPage = (id, name) => {
-    console.log(id, name)
-    const subCategory = subCategoryData?.find(sub => {
-      const filterData= sub?.category.some(cat=> cat?._id === id) // some() method checks if at least one element in the array passes the test implemented by the provided function, and returing direct.
-      
-      return filterData
+    
+    const subCategoryList = subCategoryData?.filter(sub => {
+      const filterData = sub?.category.some(cat => cat?._id === id);
+      return filterData;
     });
-    console.log("handleRedirectProductListPage", subCategory);
+    console.log("handleRedirectProductListPage", subCategoryList);
+    // Find the subcategory that was created first (oldest createdAt)
+    const subCategory = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
     
+    if(!subCategory) return; // Prevent crash if no subcategory exists
+
     const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
-    
+
     navigate(url);
   };
   // const handleRedirectProductListPage = (id, name) => {
-  //   console.log(id, name)
-  //   const subCategory = subCategoryData?.find(sub => {
-  //     const filterData= sub?.category.some(cat=> {
-  //       return cat._id === id
-  //     })
-      
-  //     return filterData
+  //   console.log(id, name);
+  //   const subCategory = subCategoryData?.find((sub) => {
+  //     const filterData = sub?.category.some((cat) => {
+  //       return cat._id === id;
+  //     });
+
+  //     return filterData;
   //   });
-    
+
   //   const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
-    
+
   //   navigate(url);
   //   console.log("handleRedirectProductListPage", subCategory);
   // };
 
-  
   return (
     <main className="min-h-[78vh]">
       <section className="bg-white">
