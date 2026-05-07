@@ -44,10 +44,11 @@ const ProductListPage = () => {
       const { data: responseData } = res
       console.log(responseData)
       if (responseData?.success) {
-        if (responseData.page == 1) {
+        if (responseData.page === 1) {
           setData(responseData.data)
         } else {
-          setData([...data, ...responseData.data])
+          // setData([...data, ...responseData.data])
+          setData(prev => [...prev, ...responseData.data])
         }
         settotalPage(responseData.totalCount)
       }
