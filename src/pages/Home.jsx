@@ -14,15 +14,14 @@ const Home = () => {
 
   const handleRedirectProductListPage = (id, name) => {
     // console.log(id, name)
-    const subCategory = subCategoryData?.find((sub) => {
-      const filterData = sub.category.some((c) => {
+    const subCategory = subCategoryData?.find(sub =>{
+      const filterData = sub.category.some(c=>{
         return c._id === id
-      });
-     
-      return filterData 
-      console.log("data",sub)
-    });
-    console.log(subCategory)
+      })
+      return filterData
+      // console.log("Sub",sub)
+    })
+    console.log("handleRedirectProductListPage", subCategory)
     
     const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(name)}-${subCategory._id}`;
 
