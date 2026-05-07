@@ -20,13 +20,8 @@ const ProductListPage = () => {
   // .slice(0, -1) // last ID remove
   // .join(" ")
   // .trim())
-  console.log(category
-  .split("-")
-  .slice(0, -1)
-  .map(item => item.trim())
-  .join(" "))
 
-  const subCategoryName= category.split("-")
+  const subCategoryName= category.slice(0, category?.length -1)
 
   const fetchProductByCategoryAndSubCategory = async () => {
     try {
