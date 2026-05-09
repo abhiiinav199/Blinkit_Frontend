@@ -68,10 +68,8 @@ const ProductListPage = () => {
       const filterData = s?.category?.some(el => el?._id === categoryId)
       return filterData ? filterData : null
     })
-    const sub = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
-    setDisplaySubCategory(sub)
-
-    console.log("sub",sub)
+    const sub = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    setDisplaySubCategory(sub || [])
   },[params,allSubCategory])
 
   return (
