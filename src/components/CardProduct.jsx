@@ -6,7 +6,7 @@ import ValidUrlConvert from '../utils/ValidUrlConvert'
 const CardProduct = ({data}) => {
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`
   return (
-   <Link to={url} className="border py-2 lg:p-4 grid gap-2 lg:gap-3 min-w-36 lg:min-w-52 rounded  ">
+   <Link to={url} className="border py-2 lg:p-4 grid gap-2 lg:gap-3 min-w-36 lg:min-w-52 rounded cursor-pointer bg-white ">
       {/* 1st Image Section */}
       <div className="min-h-20 w-full max-h-24 lg:max-h-32 rounded overflow-hidden ">
         <img src={data.image[0]} alt={data.name} className="w-full h-full object-scale-down lg:scale-120" />

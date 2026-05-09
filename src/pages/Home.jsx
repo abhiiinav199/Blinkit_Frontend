@@ -16,9 +16,9 @@ const Home = () => {
     
     const subCategoryList = subCategoryData?.filter(sub => {
       const filterData = sub?.category.some(cat => cat?._id === id);
-      return filterData;
+      return filterData ? filterData : null;
     });
-    console.log("handleRedirectProductListPage", subCategoryList);
+   
     // Find the subcategory that was created first (oldest createdAt)
     const subCategory = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
     
@@ -26,7 +26,7 @@ const Home = () => {
 
     const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}`;
 
-    navigate(url);
+    navigate(url);``
   };
   // const handleRedirectProductListPage = (id, name) => {
   //   console.log(id, name);
