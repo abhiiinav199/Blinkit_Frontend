@@ -6,7 +6,9 @@ import axios from '../utils/axios'
 import { useState } from 'react'
 
 const ProductDisplayPage = () => {
-  const [productDetails, setProductDetails] = useState([])
+  const [productDetails, setProductDetails] = useState({
+    image: []
+  })
 
   const params = useParams()
   const {product} = params
@@ -32,8 +34,8 @@ const ProductDisplayPage = () => {
   },[productId])
   return (
     <div className="min-h-[78vh]">
-      {productDetails?.map((item,index) =>(
-        <img src={item?.images[0]} alt={item.name} key={index}/>
+      {productDetails?.image?.map((img,index) =>(
+        <img src={img} alt={productDetails.name} key={index}/>
       ))}
     </div>
   )
