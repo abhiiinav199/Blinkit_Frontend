@@ -71,12 +71,12 @@ const ProductListPage = () => {
     const sub = subCategoryList?.sort((a, b) => new Date(a?.createdAt) - new Date(b?.createdAt));
     setDisplaySubCategory(sub || [])
   },[params,allSubCategory])
-  
+
   return (
     <section className="min-h-[78vh] mt-3 sm:mt-0 sticky top-26 lg:top-20">
       <div className="container sticky top-26 mx-auto grid grid-cols-[80px_1fr] md:grid-cols-[200px_1fr] lg:grid-cols-[280px_1fr]">
         {/* Sub Category */}
-          <div className=' min-h-[78vh] max-h-[78vh] overflow-y-scroll  grid gap-1 shadow-md scrollbarCustom bg-white py-2'>
+          <div className=' min-h-[88vh] max-h-[88vh] overflow-y-scroll  grid gap-1 shadow-md scrollbarCustom bg-white py-2'>
             {
               DisplaySubCategory.map((s, index) => {
                  const link = `/${ValidUrlConvert(s?.category[0]?.name)}-${s?.category[0]?._id}/${ValidUrlConvert(s.name)}-${s._id}`
@@ -101,12 +101,12 @@ const ProductListPage = () => {
           </div>
 
         {/* Product */}
-        <div className=" ">
-          <div className="bg-white shadow-md p-2">
+        <div className=" sticky top-20">
+          <div className="bg-white shadow-md p-4 z-10">
             <h3>{subCategoryName}</h3>
           </div>
 
-          <div className='min-h-[78vh] max-h-[78vh] overflow-y-auto relative'>
+          <div className='min-h-[80vh] max-h-[80vh] overflow-y-auto relative'>
             <div className=' grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 p-4 gap-4  '>
                 {
                   data.map((p, index) => {
@@ -122,20 +122,6 @@ const ProductListPage = () => {
            </div>
         </div>
 
-        {/* <div className='min-h-[78vh] max-h-[78vh] overflow-y-auto relative'>
-            <div className=' grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 p-4 gap-4  '>
-                {
-                  data.map((p, index) => {
-                    return (
-                      <CardProduct
-                        data={p}
-                        key={p._id + "productSubCategory" + index}
-                      />
-                    )
-                  })
-                }
-              </div>
-           </div> */}
 
         {loading && <Loading />}
       </div>
