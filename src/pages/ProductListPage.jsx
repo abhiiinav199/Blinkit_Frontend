@@ -71,9 +71,9 @@ const ProductListPage = () => {
     const sub = subCategoryList?.sort((a, b) => new Date(a?.createdAt) - new Date(b?.createdAt));
     setDisplaySubCategory(sub || [])
   },[params,allSubCategory])
-
+  
   return (
-    <section className="min-h-[78vh] bg-red-300 mt-3 sm:mt-0 sticky top-26 lg:top-20">
+    <section className="min-h-[78vh] mt-3 sm:mt-0 sticky top-26 lg:top-20">
       <div className="container sticky top-26 mx-auto grid grid-cols-[80px_1fr] md:grid-cols-[200px_1fr] lg:grid-cols-[280px_1fr]">
         {/* Sub Category */}
           <div className=' min-h-[78vh] max-h-[78vh] overflow-y-scroll  grid gap-1 shadow-md scrollbarCustom bg-white py-2'>
