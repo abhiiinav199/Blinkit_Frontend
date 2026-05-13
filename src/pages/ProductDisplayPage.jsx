@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import AxiosToastError from "../utils/AxiosToastError";
 import { SummaryApi } from "../common/SummaryApi";
@@ -11,7 +11,9 @@ const ProductDisplayPage = () => {
     image: [],
   });
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState("")
+  const [imageIndex, setImageIndex] = useState(1);
+
+  const imageContainer = useRef()
 
   const params = useParams();
   const { product } = params;
@@ -27,14 +29,13 @@ const ProductDisplayPage = () => {
       setLoading(true);
       const res = await axios({
         ...SummaryApi?.getProductDetails,
-        data: { 
-          productId: productId 
+        data: {
+          productId: productId,
         },
       });
       const { success, data } = res?.data;
       if (success) {
         setData(data);
-        setImage(data?.image[1])
       }
     } catch (error) {
       AxiosToastError(error);
@@ -45,32 +46,51 @@ const ProductDisplayPage = () => {
   useEffect(() => {
     getProductDetails();
   }, [params]);
-  console.log(data)
+  console.log(data);
   return (
     <div className="min-h-[78vh]">
       <section className="container mx-auto p-4 grid lg:grid-cols-2">
         <div>
           <div className="bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full">
             <img
-              src={image}
+              src={data.image[imageIndex]}
               alt={data?.name}
               className="w-full h-full object-scale-down"
             />
           </div>
 
           <div className="flex items-center justify-center gap-3 my-2">
-            <div className="bg-slate-300 w-3 h-3 lg:w-5 lg:h-5 rounded-full"></div>
+            {data?.image?.map((img, index) => {
+              return (
+                <div
+                  key={img + index + "point"}
+                  className={`bg-slate-200 cursor-pointer w-3 h-3 lg:w-5 lg:h-5 rounded-full ${index === imageIndex && "bg-slate-300"}`}
+                  onClick={() => setImageIndex(index)}
+                ></div>
+              );
+            })}
           </div>
 
           <div className="grid relative">
-            <div className="flex gap-4 z-10 relative w-full overflow-x-auto scrollbar-none">
-              <div className="w-20 h-20 min-h-20 min-w-20 shadow-md">
-                <img
-                  src="/static-product-image.png"
-                  alt="min-product"
-                  className="w-full h-full object-scale-down"
-                />
-              </div>
+            <div
+              ref={imageContainer}
+              className="flex gap-4 z-10 relative w-full overflow-x-auto scrollbar-none"
+            >
+              {data.image.map((img, index) => {
+                return (
+                  <div
+                    className="w-20 h-20 min-h-20 min-w-20 scr cursor-pointer shadow-md"
+                    key={img + index}
+                  >
+                    <img
+                      src={img}
+                      alt="min-product"
+                      onClick={() => setImage(index)}
+                      className="w-full h-full object-scale-down"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
 
