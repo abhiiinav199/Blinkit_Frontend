@@ -46,7 +46,6 @@ const ProductDisplayPage = () => {
   useEffect(() => {
     getProductDetails();
   }, [params]);
-  console.log(data);
   return (
     <div className="min-h-[78vh]">
       <section className="container mx-auto p-4 grid lg:grid-cols-2">
@@ -65,7 +64,7 @@ const ProductDisplayPage = () => {
                 <div
                   key={img + index + "point"}
                   className={`bg-slate-200 cursor-pointer w-3 h-3 lg:w-5 lg:h-5 rounded-full ${index === imageIndex && "bg-slate-300"}`}
-                  onClick={() => setImageIndex(index)}
+                   onClick={() => setImageIndex(index)}
                 ></div>
               );
             })}
@@ -76,16 +75,16 @@ const ProductDisplayPage = () => {
               ref={imageContainer}
               className="flex gap-4 z-10 relative w-full overflow-x-auto scrollbar-none"
             >
-              {data.image.map((img, index) => {
+              {data?.image?.map((img, index) => {
                 return (
                   <div
-                    className="w-20 h-20 min-h-20 min-w-20 scr cursor-pointer shadow-md"
+                    className={`w-20 h-20 min-h-20 min-w-20 scr cursor-pointer shadow-md ${index === imageIndex && "scale-90 transition-all shadow-blue-900 shadow-large"}`}
                     key={img + index}
                   >
                     <img
                       src={img}
                       alt="min-product"
-                      onClick={() => setImage(index)}
+                      onClick={() => setImageIndex(index)}
                       className="w-full h-full object-scale-down"
                     />
                   </div>
