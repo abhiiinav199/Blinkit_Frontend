@@ -6,6 +6,7 @@ import axios from "../utils/axios";
 import { useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
+import PriceWithDiscount from "../utils/PriceWithDiscount";
 
 const ProductDisplayPage = () => {
   const [data, setData] = useState({
@@ -158,18 +159,18 @@ const ProductDisplayPage = () => {
 
                  <div className='border border-green-600 px-4 py-2 rounded bg-green-50 w-fit'>
                     {/* price with discount hook need to make */}
-                    <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees((data.price,data.discount))}</p>  
+                    <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>  
                 </div>
 
                 {
-                  data.discount && (
-                    <p className='line-through'>{DisplayPriceInRupees(data.price)}</p>
+                  data?.discount && (
+                    <p className='line-through'>{DisplayPriceInRupees(data?.price)}</p>
                   )
                 }
 
                 {
-                  data.discount && (
-                    <p className="font-bold text-green-600 lg:text-2xl">{data.discount}% <span className='text-base text-neutral-500'>Discount</span></p>
+                  data?.discount && (
+                    <p className="font-bold text-green-600 lg:text-2xl">{data?.discount}% <span className='text-base text-neutral-500'>Discount</span></p>
                   )
                 }
 
@@ -178,7 +179,7 @@ const ProductDisplayPage = () => {
             </div>
 
              {
-                data.stock === 0 ? (
+                data?.stock === 0 ? (
                   <p className='text-lg text-red-500 my-2'>Out of Stock</p>
                 ) 
                 : (
@@ -231,11 +232,11 @@ const ProductDisplayPage = () => {
             <div className='my-4 grid gap-3 '>
                 <div>
                     <p className='font-semibold'>Description</p>
-                    <p className='text-base'>{data.description}</p>
+                    <p className='text-base'>{data?.description}</p>
                 </div>
                 <div>
                     <p className='font-semibold'>Unit</p>
-                    <p className='text-base'>{data.unit}</p>
+                    <p className='text-base'>{data?.unit}</p>
                 </div>
                 {
                   data?.more_details && Object.keys(data?.more_details).map((element,index)=>{
