@@ -9,6 +9,9 @@ import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
 import Divider from "../components/Divider";
 import image1 from "../assets/minute_delivery.png"
+import image2 from "../assets/Best_Prices_Offers.png"
+import image3 from "../assets/Wide_Assortment.png"
+// import AddToCartButton from "../components/AddToCartButton";
 
 const ProductDisplayPage = () => {
   const [data, setData] = useState({
@@ -160,9 +163,7 @@ const ProductDisplayPage = () => {
               <div className='flex items-center gap-2 lg:gap-4'> 
 
                  <div className='border border-green-600 px-4 py-2 rounded bg-green-50 w-fit'>
-                    {/* price with discount hook need to make */}
-                    {/* <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>   */}
-                    <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>  
+                    <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>   
                 </div>
 
                 {
@@ -186,10 +187,10 @@ const ProductDisplayPage = () => {
                   <p className='text-lg text-red-500 my-2'>Out of Stock</p>
                 ) 
                 : (
-                  // <button className='my-4 px-4 py-1 bg-green-600 hover:bg-green-700 text-white rounded'>Add</button>
-                  <div className='my-4'>
-                    {/* <AddToCartButton data={data}/> */}
-                  </div>
+                  <button className='my-4 px-4 py-1 bg-green-600 hover:bg-green-700 text-white rounded'>Add</button>
+                  // <div className='my-4'>
+                  //   <AddToCartButton data={data}/>
+                  // </div>
                 )
               }
 
@@ -209,7 +210,7 @@ const ProductDisplayPage = () => {
                   </div>
                   <div className='flex  items-center gap-4 my-4'>
                       <img
-                        // src={image2}
+                        src={image2}
                         alt='Best prices offers'
                         className='w-20 h-20'
                       />
@@ -220,7 +221,7 @@ const ProductDisplayPage = () => {
                   </div>
                   <div className='flex  items-center gap-4 my-4'>
                       <img
-                        // src={image3}
+                        src={image3}
                         alt='Wide Assortment'
                         className='w-20 h-20'
                       />
