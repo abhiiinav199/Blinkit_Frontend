@@ -7,6 +7,8 @@ import { useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
+import Divider from "../components/Divider";
+import image1 from "../assets/minute_delivery.png"
 
 const ProductDisplayPage = () => {
   const [data, setData] = useState({
@@ -152,13 +154,14 @@ const ProductDisplayPage = () => {
              <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p>
             <h2 className='text-lg font-semibold lg:text-3xl'>{data?.name}</h2>  
             <p className=''>{data?.unit}</p> 
-            {/* <Divider/> */}
+            <Divider/>
             <div>
               <p className=''>Price</p> 
               <div className='flex items-center gap-2 lg:gap-4'> 
 
                  <div className='border border-green-600 px-4 py-2 rounded bg-green-50 w-fit'>
                     {/* price with discount hook need to make */}
+                    {/* <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>   */}
                     <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount))}</p>  
                 </div>
 
@@ -195,7 +198,7 @@ const ProductDisplayPage = () => {
               <div>
                   <div className='flex  items-center gap-4 my-4'>
                       <img
-                        // src={image1}
+                        src={image1}
                         alt='superfast delivery'
                         className='w-20 h-20'
                       />
