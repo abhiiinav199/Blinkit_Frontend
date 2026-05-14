@@ -29,10 +29,10 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
   })
   const [imageLoading, setImageLoading] = useState(false)
   const [ViewImageURL, setViewImageURL] = useState("")
-  const allCategory = useSelector(state => state.product.allCategory)
+  const allCategory = useSelector(state => state?.product?.allCategory)
   const [selectCategory, setSelectCategory] = useState("")
   const [selectSubCategory, setSelectSubCategory] = useState("")
-  const allSubCategory = useSelector(state => state.product.allSubCategory)
+  const allSubCategory = useSelector(state => state?.product?.allSubCategory)
 
   const [openAddField, setOpenAddField] = useState(false)
   const [fieldName, setFieldName] = useState("")
@@ -71,84 +71,101 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
   }
 
   const handleDeleteImage = async (index) => {
-    data.image.splice(index, 1)
-    setData((preve) => {
-      return {
-        ...preve
-      }
-    })
+
+      const newImages = data.image.filter((el,i)=> i !== index)
+      setData((prev)=>{
+        return{
+            ...prev,
+            image : newImages
+        }
+      })
+    // data.image.splice(index, 1)
+    // setData((preve) => {
+    //   return {
+    //     ...preve
+    //   }
+    // })
   }
 
   const handleRemoveCategory = async (index) => {
-    data.category.splice(index, 1)
-    setData((preve) => {
-      return {
-        ...preve
+
+    const newCategory = data.category.filter((el,i)=> i !== index)
+    setData((prev)=>{
+      return{
+        ...prev,  
+        category : newCategory
       }
     })
+    // data.category.splice(index, 1)
+    // setData((preve) => {
+    //   return {
+    //     ...preve
+    //   }
+    // })
   }
   const handleRemoveSubCategory = async (index) => {
-    data.subCategory.splice(index, 1)
-    setData((preve) => {
-      return {
-        ...preve
-      }
-    })
+    const newSubCategory = data.subCategory.filter((el,i)=> i !== index)
+      setData((prev)=>{
+        return{
+          ...prev,
+          subCategory : newSubCategory
+        }
+      })
+    // data.subCategory.splice(index, 1)
+    // setData((preve) => {
+    //   return {
+    //     ...preve
+    //   }
+    // })
   }
 
   const handleAddField = () => {
-    setData((preve) => {
-      return {
-        ...preve,
-        more_details: {
-          ...preve.more_details,
-          [fieldName]: ""
-        }
+     setData((prev)=>{
+      return{
+          ...prev,
+          more_details : {
+            ...prev.more_details,
+            [fieldName] : ""
+          }
       }
     })
     setFieldName("")
     setOpenAddField(false)
   }
 
-  const handleSubmit = async (e) => {
-    // Need to make this api in backend
+  const handleSubmit = async(e)=>{
     e.preventDefault()
+    
 
     try {
       const response = await axios({
-        ...SummaryApi.updateProduct,
-        data: data
+          ...SummaryApi.createProduct, //change the api here
+          data : data
       })
-      const { data: responseData } = response
-      console.log(responseData)
+      const { data : responseData} = response
 
-      if (responseData.success) {
-        successAlert(responseData.message)
-        if(close){
-          close()
-        }
-        fetchProductData()
-        setData({
-          name: "",
-          image: [],
-          category: [],
-          subCategory: [],
-          unit: "",
-          stock: "",
-          price: "",
-          discount: "",
-          description: "",
-          more_details: {},
-        })
+      if(responseData.success){
+          successAlert(responseData.message)
+          setData({
+            name : "",
+            image : [],
+            category : [],
+            subCategory : [],
+            unit : "",
+            stock : "",
+            price : "",
+            discount : "",
+            description : "",
+            more_details : {},
+          })
 
       }
     } catch (error) {
-      AxiosToastError(error)
+        AxiosToastError(error)
     }
 
 
   }
-
   return (
     <section className='fixed top-0 right-0 left-0 bottom-0 bg-black z-50 bg-opacity-70 p-4'>
       <div className='bg-white w-full p-4 max-w-2xl mx-auto rounded overflow-y-auto h-full max-h-[95vh]'>
