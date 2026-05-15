@@ -198,7 +198,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                   type='text'
                   placeholder='Enter product description'
                   name='description'
-                  value={data.description}
+                  value={data?.description}
                   onChange={handleChange}
                   required
                   multiple
