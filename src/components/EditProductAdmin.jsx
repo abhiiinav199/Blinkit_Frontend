@@ -139,7 +139,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
 
     try {
       const response = await axios({
-          ...SummaryApi.createProduct, //change the api here
+          ...SummaryApi.updateProductDetails,
           data : data
       })
       const { data : responseData} = response
@@ -158,6 +158,10 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
             description : "",
             more_details : {},
           })
+          if(close){
+            close()
+          }
+          fetchProductData()
 
       }
     } catch (error) {
@@ -172,7 +176,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
         <section className=''>
           <div className='p-2   bg-white shadow-md flex items-center justify-between'>
             <h2 className='font-semibold'>Upload Product</h2>
-            <button onClick={close}>
+            <button className='cursor-pointer' onClick={close}>
               <IoClose size={20}/>
             </button>
           </div>
@@ -431,7 +435,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
               </div>
 
               <button type='submit'
-                className='bg-primary-100 hover:bg-primary-200 py-2 rounded font-semibold'
+                className='bg-primary-100 hover:bg-primary-200 py-2 rounded font-semibold cursor-pointer'
               >
                 Update Product
               </button>
