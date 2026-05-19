@@ -15,17 +15,17 @@ import { useEffect } from 'react';
 
 const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
   const [data, setData] = useState({
-    _id : propsData._id,
-    name: propsData.name,
-    image: propsData.image,
-    category: propsData.category,
-    subCategory: propsData.subCategory,
-    unit: propsData.unit,
-    stock: propsData.stock,
-    price: propsData.price,
-    discount: propsData.discount,
-    description: propsData.description,
-    more_details: propsData.more_details || {},
+    _id : propsData?._id,
+    name: propsData?.name,
+    image: propsData?.image,
+    category: propsData?.category,
+    subCategory: propsData?.subCategory,
+    unit: propsData?.unit,
+    stock: propsData?.stock,
+    price: propsData?.price,
+    discount: propsData?.discount,
+    description: propsData?.description,
+    more_details: propsData?.more_details || {},
   })
   const [imageLoading, setImageLoading] = useState(false)
   const [ViewImageURL, setViewImageURL] = useState("")
