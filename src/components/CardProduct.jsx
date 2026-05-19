@@ -20,13 +20,15 @@ const CardProduct = ({ data }) => {
         />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <div className="p-[1px] px-3 text-xs w-fit rounded text-green-600 bg-green-50">
           10min
         </div>
         <div>
           {Boolean(data?.discount) && (
-            <p className="text-sm bg-green-100 text-green-600">{data?.discount}%Discount</p>
+            <p className="text-[.7rem] lg:text-sm bg-green-100 text-green-600">
+              {data?.discount}%Discount
+            </p>
           )}
         </div>
       </div>
@@ -49,9 +51,13 @@ const CardProduct = ({ data }) => {
         </div>
 
         <div className="">
-          <button className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
-            Add
-          </button>
+          {data?.stock === 0 ? (
+            <p className="text-red-500 text-sm text-center">Out Of Stock</p>
+          ) : (
+            <button className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
+              Add
+            </button>
+          )}
         </div>
       </div>
     </Link>
