@@ -2,6 +2,7 @@ import React from 'react'
 import DisplayPriceInRupees from '../utils/DisplayPriceInRupees'
 import { Link } from 'react-router-dom'
 import ValidUrlConvert from '../utils/ValidUrlConvert'
+import PriceWithDiscount from '../utils/PriceWithDiscount'
 
 const CardProduct = ({data}) => {
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`
@@ -25,7 +26,7 @@ const CardProduct = ({data}) => {
 
       <div className="px-2 lg:px-0  flex items-center justify-between gap-1 lg:gap-3 text-sm :lg:text-base">
          <div className="font-semibold ">
-          {DisplayPriceInRupees(data.price) }
+          {DisplayPriceInRupees(PriceWithDiscount(data?.price,data?.discount)) }
          </div>
           <div className=""><button className='bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer' >Add</button></div>
       </div>
