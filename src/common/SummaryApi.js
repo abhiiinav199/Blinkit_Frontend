@@ -1,8 +1,8 @@
 export const baseURL = "http://localhost:3000"
 
 
-export const SummaryApi= {
-    register : {
+export const SummaryApi = {
+    register: {
         url: '/api/user/register',
         method: 'post'
     },
@@ -10,49 +10,49 @@ export const SummaryApi= {
         url: '/api/user/login',
         method: 'post'
     },
-    forgot_password :{
-        url : "api/user/forgot-password",
+    forgot_password: {
+        url: "api/user/forgot-password",
         method: "put"
     },
-    forgot_password_otp_verification :{
+    forgot_password_otp_verification: {
         url: "api/user/verify-forgot-password-otp",
         method: "put"
     },
-    reset_password:{
+    reset_password: {
         url: "api/user/reset-password",
         method: "put"
     },
-    refresh_token:{
+    refresh_token: {
         url: "api/user/refresh-token",
         method: "post"
     },
-    user_details:{
+    user_details: {
         url: "api/user/user-details",
         method: "get"
     },
-    logout:{
+    logout: {
         url: "api/user/logout",
-        method : "get"
+        method: "get"
     },
-    uploadAvatar:{
+    uploadAvatar: {
         url: "api/user/upload-avatar",
         method: "put"
-    
+
     },
-    updateUserDetails :{
+    updateUserDetails: {
         url: "api/user/upload-details",
         method: "put"
     },
-     addCategory:{
+    addCategory: {
         url: "api/category/add-category",
         method: "post"
-    
+
     },
     uploadImage: {
         url: "/api/file/upload",
         method: "post"
     },
-    getCategory:{
+    getCategory: {
         url: "/api/category/get",
         method: "get"
     },
@@ -64,55 +64,55 @@ export const SummaryApi= {
         url: "/api/category/delete",
         method: "delete"
     },
-    createSubCategory:{
-        url : "api/subcategory/create",
+    createSubCategory: {
+        url: "api/subcategory/create",
         method: "post"
     },
-    getSubCategory:{
-        url : "api/subcategory/get",
+    getSubCategory: {
+        url: "api/subcategory/get",
         method: "post"
     },
-    updateSubCategory:{
-        url : "api/subcategory/update",
+    updateSubCategory: {
+        url: "api/subcategory/update",
         method: "put"
     },
-    deleteSubCategory:{
-        url : "api/subcategory/delete",
+    deleteSubCategory: {
+        url: "api/subcategory/delete",
         method: "delete"
     },
-    createProduct:{
-        url : "api/product/create",
+    createProduct: {
+        url: "api/product/create",
         method: "post"
     },
-    getProduct:{
-        url : "api/product/get",
+    getProduct: {
+        url: "api/product/get",
         method: "post"
     },
-    deleteProduct:{
-        url : "api/product/delete",
+    deleteProduct: {
+        url: "api/product/delete",
         method: "delete"
     },
-    getProductByCategory:{
-        url : "api/product/get-product-by-category",
+    getProductByCategory: {
+        url: "api/product/get-product-by-category",
         method: "post"
     },
-    getProductByCategoryAndSubCategory:{
-        url : "api/product/get-product-by-category-and-subcategory",
-        method:"post"
+    getProductByCategoryAndSubCategory: {
+        url: "api/product/get-product-by-category-and-subcategory",
+        method: "post"
     },
-    getProductDetails:{
-        url:"api/product/get-product-details",
-        method:"post"
+    getProductDetails: {
+        url: "api/product/get-product-details",
+        method: "post"
     },
-    updateProductDetails:{
-        url:"api/product/update-product-details",
-        method:"put"
+    updateProductDetails: {
+        url: "api/product/update-product-details",
+        method: "put"
     },
-    // updateProduct:{
-    //     url : "api/product/update",
-    //     method: "put"
-    // },
+    searchProduct: {
+        url: "api/product/search-product",
+        method: "post"
+    }
 
-    
+
 
 }
