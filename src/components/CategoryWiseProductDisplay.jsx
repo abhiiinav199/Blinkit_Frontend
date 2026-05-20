@@ -6,12 +6,24 @@ import { SummaryApi } from "../common/SummaryApi"
 import CardLoading from "./CardLoading"
 import CardProduct from "./CardProduct"
 import {FaAngleLeft, FaAngleRight} from "react-icons/fa6"
+import { useSelector } from "react-redux"
+import ValidUrlConvert from "../utils/ValidUrlConvert"
 
 const CategoryWiseProductDisplay = ({id,name}) => {
   const [data, setdata] = useState([])
   const [loading, setloading] = useState(false)
   const containerRef = useRef()
+  const subCategoryData = useSelector((state) => state.product.allSubCategory)
 
+  const subCategoryList = subCategoryData?.filter(sub => {
+    const filterData = sub?.category.some(cat => cat?._id === id);
+    return filterData ? filterData : null;
+  });
+ 
+  // Find the subcategory that was created first (oldest createdAt)
+  const subCategory = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
+
+  const redirectUrl = subCategory ? `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}` : "";
 
   const fetchCategoryWiseProduct = async() =>{
     try {
@@ -52,7 +64,7 @@ const CategoryWiseProductDisplay = ({id,name}) => {
    <div >
           <div className="container mx-auto p-4 flex items-center justify-between gap-2 sm:gap-4">
               <h3 className="text-semibold  text-lg md:text-xl ">{name}</h3>
-              <Link className="text-green-400  hover:text-green-600" to="">See All</Link>
+              <Link className="text-green-400  hover:text-green-600" to={redirectUrl}>See All</Link>
           </div>
 
          {/* Skeleton Loading */}
