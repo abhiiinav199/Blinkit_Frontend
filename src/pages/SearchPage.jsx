@@ -17,7 +17,7 @@ const SearchPage = () => {
   const fetchData =async() =>{
     try {
       setLoading(true)
-      const res = await axios.post({
+      const res = await axios({
         ...SummaryApi.searchProduct,
         data: {
           search: ""
