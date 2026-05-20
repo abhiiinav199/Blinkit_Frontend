@@ -1,12 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardLoading from '../components/CardLoading'
+import { SummaryApi } from '../common/SummaryApi'
+import axios from "../utils/axios"
+import AxiosToastError from '../utils/AxiosToastError'
+
 
 const SearchPage = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(1)
+  const [search, setSearch] = useState("")
 
   const loadingArrayCard = new Array(10).fill(null)
 
+  const fetchData =async() =>{
+    try {
+      setLoading(true)
+      const res = await axios.post({
+        ...SummaryApi.searchProduct,
+        data: {
+          search: ""
+        }
+      })
+      const {data, success, page} = res?.data
+      if(success){
+        if(page === 1){
+          setData(data)
+
+        }
+        else{
+          setData(prev => [...prev, ...data])
+        }
+        console.log("searchPage",data)
+        
+      }
+    } catch (error) {
+      AxiosToastError(error)
+    }
+    finally{
+      setLoading(false)
+    }
+  }
+
+  useEffect(()=>{
+    fetchData()
+  },[])
 
   return (
     <div className='min-h-[78vh] bg-white'>
