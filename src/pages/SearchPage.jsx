@@ -3,6 +3,7 @@ import CardLoading from '../components/CardLoading'
 import { SummaryApi } from '../common/SummaryApi'
 import axios from "../utils/axios"
 import AxiosToastError from '../utils/AxiosToastError'
+import CardProduct from '../components/CardProduct'
 
 
 const SearchPage = () => {
@@ -23,7 +24,7 @@ const SearchPage = () => {
           search: ""
         }
       })
-      const {data, success, page} = res?.data
+      const {data, success, totalPage} = res?.data
       if(success){
         if(page === 1){
           setData(data)
@@ -33,7 +34,7 @@ const SearchPage = () => {
           setData(prev => [...prev, ...data])
         }
         console.log("searchPage",res)
-        
+        setTotalPage(totalPage)
       }
     } catch (error) {
       AxiosToastError(error)
@@ -55,6 +56,12 @@ const SearchPage = () => {
           <p className='font-semibold'>Search Results: {data?.length}</p>
 
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-4 gap-4'>
+
+              {
+                 data?.map((item,index)=>(
+                  <CardProduct key={item._id+ "search" +index} data={item} loading={false}/>
+                 )) 
+              }
 
 
             {/* loading data */}
