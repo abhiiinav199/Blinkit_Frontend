@@ -6,9 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import ValidUrlConvert from "../utils/ValidUrlConvert";
 import CategoryWiseProductDisplay from "../components/CategoryWiseProductDisplay";
 const Home = () => {
-  const loadingCategory = useSelector((state) => state.product.loadingCategory);
-  const categoryData = useSelector((state) => state.product.allCategory);
-  const subCategoryData = useSelector((state) => state.product.allSubCategory);
+  const loadingCategory = useSelector((state) => state?.product?.loadingCategory);
+  const categoryData = useSelector((state) => state?.product?.allCategory);
+  const subCategoryData = useSelector((state) => state?.product?.allSubCategory);
   const navigate = useNavigate();
 
   //keep this one- Industry Standards
