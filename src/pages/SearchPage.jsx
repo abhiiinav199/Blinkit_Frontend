@@ -32,7 +32,7 @@ const SearchPage = () => {
         else{
           setData(prev => [...prev, ...data])
         }
-        console.log("searchPage",data)
+        console.log("searchPage",res)
         
       }
     } catch (error) {
