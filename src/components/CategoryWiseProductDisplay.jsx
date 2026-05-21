@@ -58,7 +58,6 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
 
   //keep this one- Industry Standards
   const handleRedirectProductListPage = () => {
-    console.log(id, name)
 
     const subCategoryList = subCategoryData?.filter(sub => {
       const filterData = sub?.category.some(cat => cat?._id === id);

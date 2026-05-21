@@ -4,8 +4,9 @@ import { SummaryApi } from '../common/SummaryApi'
 import axios from "../utils/axios"
 import AxiosToastError from '../utils/AxiosToastError'
 import CardProduct from '../components/CardProduct'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-
+// git commit -m "wip-added infinite scroll component "
 const SearchPage = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -15,38 +16,45 @@ const SearchPage = () => {
 
   const loadingArrayCard = new Array(10).fill(null)
 
-  const fetchData =async() =>{
+  const fetchData = async () => {
     try {
       setLoading(true)
       const res = await axios({
         ...SummaryApi.searchProduct,
         data: {
-          search: ""
+          search: "",
+          page: page
         }
       })
-      const {data, success, totalPage} = res?.data
-      if(success){
-        if(page === 1){
+      const { data, success, totalPage } = res?.data
+      if (success) {
+        if (page === 1) {
           setData(data)
 
         }
-        else{
+        else {
           setData(prev => [...prev, ...data])
         }
-        console.log("searchPage",res)
+
         setTotalPage(totalPage)
       }
     } catch (error) {
       AxiosToastError(error)
     }
-    finally{
+    finally {
       setLoading(false)
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchData()
-  },[])
+  }, [page])
+console.log("page", page)
+  const handleFetchMore= async() =>{
+    if(totalPage > page){
+        setPage(prev=> prev+1)
+    }
+  }
 
   return (
     <div className='min-h-[78vh] bg-white'>
@@ -55,26 +63,37 @@ const SearchPage = () => {
         <div className='container mx-auto p-4'>
           <p className='font-semibold'>Search Results: {data?.length}</p>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-4 gap-4'>
+          <InfiniteScroll
+            dataLength={data.length}
+            hasMore={true}
+            next={handleFetchMore}
+            >
+
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-4 gap-4'>
+
 
               {
-                 data?.map((item,index)=>(
-                  <CardProduct key={item._id+ "search" +index} data={item} loading={false}/>
-                 )) 
+                data?.map((item, index) => (
+                  <CardProduct key={item._id + "search" + index} data={item} loading={false} />
+                ))
               }
 
 
-            {/* loading data */}
-            {
-              loading && (
-                loadingArrayCard?.map((_, index) => {
-                  return (
-                    <CardLoading key={"loadingsearchpage" + index} />
-                  )
-                })
-              )
-            }
-          </div>
+
+
+
+              {/* loading data */}
+              {
+                loading && (
+                  loadingArrayCard?.map((_, index) => {
+                    return (
+                      <CardLoading key={"loadingsearchpage" + index} />
+                    )
+                  })
+                )
+              }
+            </div>
+          </InfiniteScroll>
 
         </div>
 
