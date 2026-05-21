@@ -5,6 +5,7 @@ import axios from "../utils/axios"
 import AxiosToastError from '../utils/AxiosToastError'
 import CardProduct from '../components/CardProduct'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { useLocation } from 'react-router-dom'
 
 
 const SearchPage = () => {
@@ -12,7 +13,11 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
-  const [search, setSearch] = useState("")
+
+  const params = useLocation()
+  let search = params?.search
+  const value = search.split("=")[1];
+  console.log(value)
 
   const loadingArrayCard = new Array(10).fill(null)
 
@@ -50,7 +55,7 @@ const SearchPage = () => {
   useEffect(() => {
     fetchData()
   }, [page])
-console.log("page", page)
+
   const handleFetchMore= async() =>{
     if(totalPage > page){
         setPage(prev=> prev+1)
