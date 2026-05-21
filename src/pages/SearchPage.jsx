@@ -6,7 +6,7 @@ import AxiosToastError from '../utils/AxiosToastError'
 import CardProduct from '../components/CardProduct'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-// git commit -m "wip-added infinite scroll component "
+
 const SearchPage = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -23,7 +23,8 @@ const SearchPage = () => {
         ...SummaryApi.searchProduct,
         data: {
           search: "",
-          page: page
+          page: page,
+          limit: 15
         }
       })
       const { data, success, totalPage } = res?.data
@@ -65,7 +66,7 @@ console.log("page", page)
 
           <InfiniteScroll
             dataLength={data.length}
-            hasMore={true}
+            hasMore={page < totalPage}
             next={handleFetchMore}
             >
 
