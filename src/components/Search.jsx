@@ -19,16 +19,23 @@ const Search = () => {
   const redirectToSearchPage = () => {
     navigate("/search");
   };
- 
+
+  const handleOnChange = (e) => {
+    const { value } = e?.target
+    
+    const url = `/search?q=${value}`
+    navigate(url)
+    
+  }
 
   return (
     <div className="w-full min-w-[300px] lg:min-w-[420px] h-11 lg:h-12 rounded-lg border border-transparent overflow-hidden flex items-center text-neutral-500 bg-slate-50 group focus-within:border-primary-200">
 
       <div>
 
-        { 
+        {
           (ismobile && isSearchPage) ? (
-            <Link to={"/"}  className="flex p-2 m-1 justify-center items-center h-full group-focus-within:text-primary-200 bg-white rounded-full shadow-md">
+            <Link to={"/"} className="flex p-2 m-1 justify-center items-center h-full group-focus-within:text-primary-200 bg-white rounded-full shadow-md">
               <FaArrowLeft size={20} />
             </Link>
 
@@ -77,12 +84,13 @@ const Search = () => {
           // Search page
           <div className="w-full h-full">
             <input
+              onChange={handleOnChange}
               type="text"
               placeholder="Search for atta, dal and more..."
               autoFocus
               className="bg-transparent w-full outline-none h-full"
             />
-          </div> 
+          </div>
         )}
       </div>
     </div>
