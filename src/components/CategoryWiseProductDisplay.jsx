@@ -5,94 +5,124 @@ import axios from "../utils/axios"
 import { SummaryApi } from "../common/SummaryApi"
 import CardLoading from "./CardLoading"
 import CardProduct from "./CardProduct"
-import {FaAngleLeft, FaAngleRight} from "react-icons/fa6"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6"
 import { useSelector } from "react-redux"
 import ValidUrlConvert from "../utils/ValidUrlConvert"
 
-const CategoryWiseProductDisplay = ({id,name}) => {
+const CategoryWiseProductDisplay = ({ id, name }) => {
   const [data, setdata] = useState([])
   const [loading, setloading] = useState(false)
   const containerRef = useRef()
-  const subCategoryData = useSelector((state) => state.product.allSubCategory)
+  const subCategoryData = useSelector((state) => state?.product?.allSubCategory);
 
-  const subCategoryList = subCategoryData?.filter(sub => {
-    const filterData = sub?.category.some(cat => cat?._id === id);
-    return filterData ? filterData : null;
-  });
- 
-  // Find the subcategory that was created first (oldest createdAt)
-  const subCategory = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
 
-  const redirectUrl = subCategory ? `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory.name)}-${subCategory._id}` : "";
+  const loadingCardNumber = new Array(6).fill(null)
 
-  const fetchCategoryWiseProduct = async() =>{
+
+
+  const fetchCategoryWiseProduct = async () => {
     try {
       setloading(true)
       const res = await axios({
         ...SummaryApi.getProductByCategory,
-        data:{
+        data: {
           id: id
         }
       })
-      const {data :responseData} = res
-   
-      if(responseData?.success){
+      const { data: responseData } = res
+
+      if (responseData?.success) {
         setdata(responseData?.data)
       }
     } catch (error) {
       AxiosToastError(error)
-    }finally{
+    } finally {
       setloading(false)
     }
   }
 
-  const handleScrollRight = () =>{
-    containerRef.current.scrollLeft +=200
+  const handleScrollRight = () => {
+    containerRef.current.scrollLeft += 200
   }
 
-  const handleScrollLeft = () =>{
-    containerRef.current.scrollLeft -=200
+  const handleScrollLeft = () => {
+    containerRef.current.scrollLeft -= 200
   }
 
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchCategoryWiseProduct()
-  },[])
+  }, [])
 
-  const loadingCardNumber= new Array(6).fill(null)
+
+
+  //keep this one- Industry Standards
+  const handleRedirectProductListPage = () => {
+    console.log(id, name)
+
+    const subCategoryList = subCategoryData?.filter(sub => {
+      const filterData = sub?.category.some(cat => cat?._id === id);
+      return filterData ? filterData : null;
+    });
+
+    // Find the subcategory that was created first (oldest createdAt)
+    const subCategory = subCategoryList?.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))[0];
+
+    if (!subCategory) return; // Prevent crash if no subcategory exists
+
+    const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory?.name)}-${subCategory?._id}`;
+
+    return url;
+
+
+    //  const subCategory = subCategoryData?.find((sub) => {
+    //   const filterData = sub?.category.some((cat) => {
+    //     return cat._id === id;
+    //   });
+
+    //   return filterData;
+    // });
+
+    // const url = `/${ValidUrlConvert(name)}-${id}/${ValidUrlConvert(subCategory?.name)}-${subCategory?._id}`;
+
+    // return url;
+
+  };
+
+  const redirectUrl = handleRedirectProductListPage();
   return (
-   <div >
-          <div className="container mx-auto p-4 flex items-center justify-between gap-2 sm:gap-4">
-              <h3 className="text-semibold  text-lg md:text-xl ">{name}</h3>
-              <Link className="text-green-400  hover:text-green-600" to={redirectUrl}>See All</Link>
-          </div>
+    <div >
+      <div className="container mx-auto p-4 flex items-center justify-between gap-2 sm:gap-4">
+        <h3 className="text-semibold  text-lg md:text-xl ">{name}</h3>
+        <Link to={redirectUrl} className="text-green-400  hover:text-green-600" >See All</Link>
+      </div>
 
-         {/* Skeleton Loading */}
-          <div className="relative flex items-center">
-            <div className="container mx-auto flex gap-4 md:gap-6 lg:gap-8 px-4  overflow-x-auto scrollbar-none  scroll-smooth" ref={containerRef}>
-            {
-              loading &&
-              loadingCardNumber.map((_, index) =>(
-                <CardLoading key={index}/>
+      {/* Skeleton Loading */}
+      <div className="relative flex items-center">
+        <div className="container mx-auto flex gap-4 md:gap-6 lg:gap-8 px-4  overflow-x-auto scrollbar-none  scroll-smooth" ref={containerRef}>
+          {
+            loading &&
+            loadingCardNumber.map((_, index) => (
+              <CardLoading key={index} />
 
-              ))
-            }
+            ))
+          }
 
-            {/* Maping over data */}
-              {
-              data?.map((item, index) =>(
-                <CardProduct key={index} data={item}/>
-              ))
-              }
+          {/* Maping over data */}
+          {
+            data?.map((item, index) => (
+              <CardProduct key={index} data={item} />
+            ))
+          }
 
-            </div>
-
-             <div className="w-full left-0 right-0 px-2 container mx-auto absolute hidden lg:flex justify-between">
-              <button onClick={handleScrollLeft} className="relative  bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleLeft/></button>
-              <button onClick={handleScrollRight} className="relative bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleRight/></button>
-          </div>
-          </div>
         </div>
+
+        <div className="w-full left-0 right-0 px-2 container mx-auto absolute hidden lg:flex justify-between">
+          <button onClick={handleScrollLeft} className="relative  bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleLeft /></button>
+          <button onClick={handleScrollRight} className="relative bg-white hover:bg-gray-100 shadow-lg p-2 rounded-full cursor-pointer text-lg"><FaAngleRight /></button>
+        </div>
+      </div>
+    </div>
   )
 }
 
