@@ -15,9 +15,9 @@ const SearchPage = () => {
   const [totalPage, setTotalPage] = useState(1)
 
   const params = useLocation()
-  let search = params?.search
-  const value = search.split("=")[1];
-  console.log(value)
+  let {search} = params
+  const searchText = search.split("=")[1];
+  console.log(searchText)
 
   const loadingArrayCard = new Array(10).fill(null)
 
@@ -27,7 +27,7 @@ const SearchPage = () => {
       const res = await axios({
         ...SummaryApi.searchProduct,
         data: {
-          search: "",
+          search: searchText,
           page: page,
           limit: 15
         }
@@ -54,7 +54,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     fetchData()
-  }, [page])
+  }, [page, searchText])
 
   const handleFetchMore= async() =>{
     if(totalPage > page){
