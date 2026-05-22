@@ -10,7 +10,7 @@ const Search = () => {
   const location = useLocation();
   const [isSearchPage, setIsSearchPage] = useState(false);
   const [ismobile] = useMobile()
-  
+
   const params = useLocation()
   let { search } = params;
   let searchText = search.split("=")[1]

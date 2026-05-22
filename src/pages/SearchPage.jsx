@@ -6,6 +6,8 @@ import AxiosToastError from '../utils/AxiosToastError'
 import CardProduct from '../components/CardProduct'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useLocation } from 'react-router-dom'
+import noDataImage from "../assets/nothing here yet.webp"
+
 
 
 const SearchPage = () => {
@@ -15,7 +17,7 @@ const SearchPage = () => {
   const [totalPage, setTotalPage] = useState(1)
 
   const params = useLocation()
-  let {search} = params
+  let { search } = params
   const searchText = search.split("=")[1];
 
   const loadingArrayCard = new Array(10).fill(null)
@@ -55,9 +57,9 @@ const SearchPage = () => {
     fetchData()
   }, [page, searchText])
 
-  const handleFetchMore= async() =>{
-    if(totalPage > page){
-        setPage(prev=> prev+1)
+  const handleFetchMore = async () => {
+    if (totalPage > page) {
+      setPage(prev => prev + 1)
     }
   }
 
@@ -72,7 +74,7 @@ const SearchPage = () => {
             dataLength={data.length}
             hasMore={page < totalPage}
             next={handleFetchMore}
-            >
+          >
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-4 gap-4'>
 
@@ -82,6 +84,7 @@ const SearchPage = () => {
                   <CardProduct key={item._id + "search" + index} data={item} loading={false} />
                 ))
               }
+
 
 
 
@@ -100,6 +103,18 @@ const SearchPage = () => {
             </div>
           </InfiniteScroll>
 
+
+          {
+            // no data
+            !data[0] && !loading && (
+              <div className="flex flex-col justify-center items-center">
+                <img src={noDataImage}
+                  alt="No Data"
+                  className='w-full h-full max-w-xs max-h-xs' />
+                  <p className='font-semibold my-2'>No Data Found for "{searchText}"</p>
+              </div>
+            )
+          }
         </div>
 
       </section>
