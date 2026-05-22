@@ -17,7 +17,6 @@ const SearchPage = () => {
   const params = useLocation()
   let {search} = params
   const searchText = search.split("=")[1];
-  console.log(searchText)
 
   const loadingArrayCard = new Array(10).fill(null)
 
