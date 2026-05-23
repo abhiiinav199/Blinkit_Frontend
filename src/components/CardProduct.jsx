@@ -1,11 +1,26 @@
-import React from "react";
 import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
 import { Link } from "react-router-dom";
 import ValidUrlConvert from "../utils/ValidUrlConvert";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
+import axios from "../utils/axios"
+import { SummaryApi } from "../common/SummaryApi";
+
 
 const CardProduct = ({ data }) => {
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
+
+  const handleAddToCart= async(e) =>{
+    e.stopPropagation() //parent events ko rokta hai
+    e.preventDefault() //browser/Link ka default action rokta hai
+    // const res= await axios({
+    //   ...SummaryApi.addToCart,
+    //   data:{
+    //     productId: data?._id,
+    //     userId:''
+    //   }
+    // })
+    console.log("clicked  ")
+  }
   return (
     <Link
       to={url}
@@ -54,7 +69,7 @@ const CardProduct = ({ data }) => {
           {data?.stock === 0 ? (
             <p className="text-red-500 text-sm text-center">Out Of Stock</p>
           ) : (
-            <button className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
+            <button onClick={handleAddToCart} className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
               Add
             </button>
           )}
