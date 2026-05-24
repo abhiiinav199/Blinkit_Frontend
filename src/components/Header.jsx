@@ -7,8 +7,9 @@ import { useMobile } from "../hooks/useMobile"
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import UsersMenu from "./UsersMenu"
+import DisplayPriceInRupees from "../utils/DisplayPriceInRupees"
 
 
 const Header = () => {
@@ -18,7 +19,11 @@ const Header = () => {
   const isSearchPage = location.pathname === '/search'
   const user = useSelector((state) => state?.user)
   const [openUserMenu, setopenUserMenu] = useState(false)
- 
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalQty, setTotalQty] = useState(0)
+  const cartItems = useSelector((state) => state?.cartItem?.cart)
+  console.log("cartItems", cartItems)
+
 
   // console.log("user from redux stores file Header.jsx", user)  
   const redirecttoLoginPage = () => {
@@ -28,12 +33,21 @@ const Header = () => {
     setopenUserMenu(false)
   }
   const handleMobileUser = () => {
-    if(!user._id){
+    if (!user._id) {
       navigate("/login")
-      return 
+      return
     }
     navigate("/user")
   }
+
+  // total item and toal price
+  useEffect(() => {
+    // setTotalQty(cartItems.reduce((acc, cur) => acc + cur.qty, 0))
+    // setTotalPrice(cartItems.reduce((acc, cur) => acc + cur.price * cur.qty, 0))
+  }, [cartItems])
+
+
+
 
   return (
     <header className="h-24 lg:h-20 shadow-md sticky top-0 z-40 flex items-center flex-col">
@@ -44,7 +58,7 @@ const Header = () => {
           <div className="container mx-auto lg:h-full flex items-center justify-between px-2 gap-1">
 
             {/* Logo */}
-            <div className="h-full py-1 "> 
+            <div className="h-full py-1 ">
               <Link to={"/"} className=" h-full flex justify-center items-center">
                 <img src={logo} width={170} height={60} alt="logo" className="hidden lg:block" />
                 <img src={logo} width={120} height={60} alt="logo" className="lg:hidden" />
@@ -59,7 +73,7 @@ const Header = () => {
             {/* login and my cart */}
             <div>
               {/* user icons display only in mobile version */}
-              <button  onClick={handleMobileUser} className="text-neutral-500 lg:hidden"> 
+              <button onClick={handleMobileUser} className="text-neutral-500 lg:hidden">
                 <FaRegCircleUser />
               </button>
 
@@ -69,8 +83,8 @@ const Header = () => {
                 {
                   user?._id ? (
                     <div className="relative">
-                      <div className="flex items-center gap-1 cursor-pointer select-none"  onClick={() => setopenUserMenu(prev => !prev)}>
-                      
+                      <div className="flex items-center gap-1 cursor-pointer select-none" onClick={() => setopenUserMenu(prev => !prev)}>
+
                         <FaRegCircleUser />
                         <p>Account</p>
 
@@ -109,7 +123,16 @@ const Header = () => {
                   </div>
 
                   <div className="font=semibold">
-                    <p>My cart</p>
+                    {cartItems[0] ? (
+                      <div className="">
+                        <p>{totalQty} Items</p> 
+                        <p>{DisplayPriceInRupees(totalPrice.toFixed(2))}</p>
+
+                      </div>
+                    ) : (
+                      <p>My cart</p>
+                    )}
+
                   </div>
                 </button>
               </div>

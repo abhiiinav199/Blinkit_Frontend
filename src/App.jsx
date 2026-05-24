@@ -10,10 +10,10 @@ import axios from "./utils/axios";
 import { SummaryApi } from "./common/SummaryApi";
 import fetchCategory from "./utils/fetchCategory";
 import AxiosToastError from "./utils/AxiosToastError";
+import { setCartItem } from "./Slice/cartSlice";
 
 const App = () => {
   const dispatch = useDispatch();
-  // const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
     try {
@@ -23,9 +23,7 @@ const App = () => {
       dispatch(setUserDetails(data));
     } catch (error) {
       
-    } finally {
-      // setIsLoading(false);
-    }
+    } 
   };
 
   const fetchAllCategory = async () => {
@@ -68,9 +66,9 @@ const App = () => {
         ...SummaryApi.getCartItem
       })
       const {data : responseData} = res
-      const {success, message, error} = responseData
+      const {success, error} = responseData
       if(success){
-        console.log(responseData.data)
+        dispatch(setCartItem(responseData.data))
       }
       else{
         AxiosToastError(error)

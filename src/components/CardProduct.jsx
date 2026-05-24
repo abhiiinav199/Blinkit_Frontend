@@ -39,8 +39,8 @@ const CardProduct = ({ data }) => {
     }finally{
       setLoading(false)
     }
-    console.log("clicked  " , data)
   }
+  
   return (
     <Link
       to={url}
