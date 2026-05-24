@@ -119,7 +119,7 @@ export const SummaryApi = {
     getCartItem:{
         url : "/api/cart/get",
         method: "get"
-    }
+    },
 
 
 
