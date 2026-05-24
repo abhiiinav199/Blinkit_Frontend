@@ -62,10 +62,29 @@ const App = () => {
     }
   }
 
+  const fetchCartItem= async () =>{
+    try {
+      const res = await axios({
+        ...SummaryApi.getCartItem
+      })
+      const {data : responseData} = res
+      const {success, message, error} = responseData
+      if(success){
+        console.log(responseData.data)
+      }
+      else{
+        AxiosToastError(error)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchUser();
     fetchAllCategory();
     fetchSubCategory()
+    fetchCartItem()
   }, []);
 
   // if (isLoading) {
