@@ -45,10 +45,10 @@ const Login = () => {
 
             // console.log(res)
 
-          if(res.data.error){
+          if(res?.data?.error){
             toast.error(res?.data?.message)
           }
-          if(res.data.success){
+          if(res?.data?.success){
             const {accessToken} = res?.data?.data
             const {refreshToken} = res?.data?.data
             

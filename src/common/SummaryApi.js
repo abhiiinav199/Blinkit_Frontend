@@ -113,7 +113,7 @@ export const SummaryApi = {
         method: "post"
     },
     addToCart: {
-        url: "/api/cart/add-to-cart",
+        url: "/api/cart/create",
         method: "post"
     }
 

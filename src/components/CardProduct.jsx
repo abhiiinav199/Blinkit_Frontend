@@ -4,22 +4,42 @@ import ValidUrlConvert from "../utils/ValidUrlConvert";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
 import axios from "../utils/axios"
 import { SummaryApi } from "../common/SummaryApi";
+import AxiosToastError from "../utils/AxiosToastError";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 const CardProduct = ({ data }) => {
+  const [loading, setLoading] = useState(false)
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
 
   const handleAddToCart= async(e) =>{
     e.stopPropagation() //parent events ko rokta hai
     e.preventDefault() //browser/Link ka default action rokta hai
-    // const res= await axios({
-    //   ...SummaryApi.addToCart,
-    //   data:{
-    //     productId: data?._id,
-    //     userId:''
-    //   }
-    // })
-    console.log("clicked  ")
+    try {
+      setLoading(true)
+      const res= await axios({
+        ...SummaryApi.addToCart,
+        data:{
+          productId: data?._id,
+        }
+
+      })
+
+      const {data : responseData} = res
+      const {success, message, error} = responseData
+      if(success){
+        toast.success(message)
+      }
+      else{
+        AxiosToastError(error)
+      }
+    } catch (error) {
+      AxiosToastError(error)
+    }finally{
+      setLoading(false)
+    }
+    console.log("clicked  " , data)
   }
   return (
     <Link
