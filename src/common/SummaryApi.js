@@ -116,6 +116,10 @@ export const SummaryApi = {
         url: "/api/cart/create",
         method: "post"
     },
+    getCartItem:{
+        url : "/api/cart/get",
+        method: "get"
+    }
 
 
 
