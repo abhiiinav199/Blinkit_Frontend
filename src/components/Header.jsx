@@ -129,7 +129,7 @@ const Header = () => {
                     {cartItems[0] ? (
                       <div className="">
                         <p>{totalQty} Items</p> 
-                        <p>{DisplayPriceInRupees(totalPrice.toFixed(2))}</p>
+                        <p>{DisplayPriceInRupees(totalPrice)}</p>
 
                       </div>
                     ) : (
