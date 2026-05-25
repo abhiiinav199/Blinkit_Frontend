@@ -22,13 +22,14 @@ import ProtectedRoute from "../components/ProtectedRoute"
 import AdminPermision from "../layout/AdminPermision"
 import ProductListPage from "../pages/ProductListPage"
 import ProductDisplayPage from "../pages/ProductDisplayPage"
+import GlobalProvider from "../provider/GlobalProvider"
 // Layout component that includes Header and Footer
 const Layout = () => (
-  <>
+  <GlobalProvider>
     <Header />
     <Outlet /> {/* This renders the matched child route */}
     <Footer />
-  </>
+  </GlobalProvider>
 );
 
 const Routing = () => {

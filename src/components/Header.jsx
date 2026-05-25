@@ -46,7 +46,7 @@ const Header = () => {
       console.log(curr)
       return prev + curr.quantity
     },0)
-    console.log(qty)
+    setTotalQty(qty)
   }, [cartItems])
 
 
