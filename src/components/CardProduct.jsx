@@ -32,7 +32,9 @@ const CardProduct = ({ data }) => {
       const {success, message, error} = responseData
       if(success){
         toast.success(message)
-        fetchCartItem()
+        if(fetchCartItem){
+          fetchCartItem()
+        }
       }
       else{
         AxiosToastError(error)
