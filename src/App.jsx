@@ -68,7 +68,7 @@ const App = () => {
       const {data : responseData} = res
       const {success, error} = responseData
       if(success){
-        dispatch(setCartItem(responseData.data))
+        dispatch(setCartItem(responseData?.data))
       }
       else{
         AxiosToastError(error)
