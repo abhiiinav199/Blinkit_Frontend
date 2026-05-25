@@ -42,11 +42,16 @@ const Header = () => {
 
   // total item and total price
   useEffect(() => {
+    
     const qty = cartItems.reduce((prev, curr) =>{
-      console.log(curr)
       return prev + curr.quantity
     },0)
     setTotalQty(qty)
+
+    const totalPrice = cartItems.reduce((prev, curr) =>{
+      return prev + (curr.productId.price * curr.quantity)
+    },0)
+    setTotalPrice(totalPrice)
   }, [cartItems])
 
 
