@@ -85,9 +85,7 @@ const App = () => {
     fetchCartItem()
   }, []);
 
-  // if (isLoading) {
-  //   return <div className="flex justify-center items-center h-screen text-3xl">Loading...</div>; // Or your Loading component
-  // }
+  
 
   return (
     <>

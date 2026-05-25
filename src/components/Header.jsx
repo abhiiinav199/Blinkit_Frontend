@@ -40,13 +40,13 @@ const Header = () => {
     navigate("/user")
   }
 
-  // total item and toal price
+  // total item and total price
   useEffect(() => {
     const qty = cartItems.reduce((prev, curr) =>{
       console.log(curr)
       return prev + curr.quantity
     },0)
-    // console.log(qty)
+    console.log(qty)
   }, [cartItems])
 
 
