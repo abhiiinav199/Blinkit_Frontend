@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { SummaryApi } from "../common/SummaryApi";
 import AxiosToastError from "../utils/AxiosToastError";
 import axios from "../utils/axios"
+import toast from "react-hot-toast";
 
 
 export const GlobalContext = createContext(null)
@@ -32,12 +33,34 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
+    const increaseQty = async(id, qty) =>{
+        try {
+            const res = await axios({
+                ...SummaryApi.updateCartItem,
+                data:{
+                    _id : id,
+                    qty: qty
+                }
+            })
+
+            const {data : respsonseData} = res
+            const {success, message} = respsonseData
+
+            if(success){
+                toast.success(message)
+                fetchCartItem()
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        }
+    }
+
     useEffect(() => {
         fetchCartItem()
     }, [])
 
     return (
-        <GlobalContext.Provider value={{fetchCartItem}}>
+        <GlobalContext.Provider value={{fetchCartItem, increaseQty}}>
             {children}
         </GlobalContext.Provider>
     )

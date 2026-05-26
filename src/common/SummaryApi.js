@@ -120,6 +120,10 @@ export const SummaryApi = {
         url : "/api/cart/get",
         method: "get"
     },
+    updateCartItem:{
+        url: "/api/cart/updare-qty",
+        method: "put"
+    }
 
 
 
