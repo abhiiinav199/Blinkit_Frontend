@@ -26,7 +26,7 @@ const GlobalProvider = ({ children }) => {
                 dispatch(setCartItem(responseData?.data))
             }
             else {
-                AxiosToastError(error)
+                // AxiosToastError(error)
             }
         } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ const GlobalProvider = ({ children }) => {
                 fetchCartItem()
             }
         } catch (error) {
-            AxiosToastError(error)
+            // AxiosToastError(error)
         }
     }
 
