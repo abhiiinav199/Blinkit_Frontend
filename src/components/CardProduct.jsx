@@ -12,41 +12,10 @@ import { useGlobalContext } from "../provider/GlobalProvider";
 
 const CardProduct = ({ data }) => {
   const [loading, setLoading] = useState(false)
-  const {fetchCartItem, updateCartItem} = useGlobalContext()
+
+
+
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
-
-  const handleAddToCart= async(e) =>{
-    e.stopPropagation() //parent events ko rokta hai
-    e.preventDefault() //browser/Link ka default action rokta hai
-    try {
-      setLoading(true)
-      const res= await axios({
-        ...SummaryApi.addToCart,
-        data:{
-          productId: data?._id,
-        }
-
-      })
-
-      const {data : responseData} = res
-      const {success, message, error} = responseData
-      if(success){
-        toast.success(message)
-        if(fetchCartItem){
-          fetchCartItem()
-        }
-      }
-      else{
-        AxiosToastError(error)
-      }
-    } catch (error) {
-      AxiosToastError(error)
-    }finally{
-      setLoading(false)
-    }
-  }
-  
-const increaseQty = () =>{}
 
   return (
     <Link
