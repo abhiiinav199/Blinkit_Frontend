@@ -2,19 +2,11 @@ import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
 import { Link } from "react-router-dom";
 import ValidUrlConvert from "../utils/ValidUrlConvert";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
-import axios from "../utils/axios"
-import { SummaryApi } from "../common/SummaryApi";
-import AxiosToastError from "../utils/AxiosToastError";
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { useGlobalContext } from "../provider/GlobalProvider";
 
 
 const CardProduct = ({ data }) => {
-  const [loading, setLoading] = useState(false)
-
-
-
+  
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
 
   return (
