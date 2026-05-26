@@ -46,15 +46,15 @@ const AddToCartButton = ({ data }) => {
 
     }
 
-    //checking this item in cart or not
-    // useEffect(() => {
-    //     const checkingitem = cartItem.some(item => item.productId._id === data._id)
-    //     setIsAvailableCart(checkingitem)
+    // checking this item in cart or not
+    useEffect(() => {
+        const checkingitem = cartItem.some(item => item.productId._id === data._id)
+        setIsAvailableCart(checkingitem)
 
-    //     const product = cartItem.find(item => item.productId._id === data._id)
-    //     setQty(product?.quantity)
-    //     setCartItemsDetails(product)
-    // }, [data, cartItem])
+        const product = cartItem.find(item => item.productId._id === data._id)
+        setQty(product?.quantity)
+        setCartItemsDetails(product)
+    }, [data, cartItem])
 
 
     const increaseQty = async (e) => {
@@ -62,6 +62,7 @@ const AddToCartButton = ({ data }) => {
         e.stopPropagation()
 
         const response = await updateCartItem(cartItemDetails?._id, qty + 1)
+            console.log(response)
 
         if (response.success) {
             toast.success("Item added")
@@ -75,7 +76,6 @@ const AddToCartButton = ({ data }) => {
             deleteCartItem(cartItemDetails?._id)
         } else {
             const response = await updateCartItem(cartItemDetails?._id, qty - 1)
-
             if (response.success) {
                 toast.success("Item remove")
             }

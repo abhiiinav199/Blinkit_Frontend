@@ -2,11 +2,11 @@ import DisplayPriceInRupees from "../utils/DisplayPriceInRupees";
 import { Link } from "react-router-dom";
 import ValidUrlConvert from "../utils/ValidUrlConvert";
 import PriceWithDiscount from "../utils/PriceWithDiscount";
-import { useState } from "react";
+import AddToCartButton from "./AddToCartButton";
 
 
 const CardProduct = ({ data }) => {
-  
+
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
 
   return (
@@ -57,9 +57,10 @@ const CardProduct = ({ data }) => {
           {data?.stock === 0 ? (
             <p className="text-red-500 text-sm text-center">Out Of Stock</p>
           ) : (
-            <button onClick={handleAddToCart} className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
-              Add
-            </button>
+            <AddToCartButton data={data}/>
+            // <button onClick={handleAddToCart} className="bg-green-600 hover:bg-green-700 px-1 lg:px-4 text-white py-1 rounded cursor-pointer">
+            //   Add
+            // </button>
           )}
         </div>
       </div>
