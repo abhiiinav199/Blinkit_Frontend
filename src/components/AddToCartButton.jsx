@@ -20,29 +20,29 @@ const AddToCartButton = ({ data }) => {
         e.preventDefault()
         e.stopPropagation()
 
-        // try {
-        //     setLoading(true)
+        try {
+            setLoading(true)
 
-        //     const response = await axios({
-        //         ...SummaryApi.addTocart,
-        //         data: {
-        //             productId: data?._id
-        //         }
-        //     })
+            const response = await axios({
+                ...SummaryApi.addToCart,
+                data: {
+                    productId: data?._id
+                }
+            })
 
-        //     const { data: responseData } = response
+            const { data: responseData } = response
 
-        //     if (responseData.success) {
-        //         toast.success(responseData.message)
-        //         if (fetchCartItem) {
-        //             fetchCartItem()
-        //         }
-        //     }
-        // } catch (error) {
-        //     AxiosToastError(error)
-        // } finally {
-        //     setLoading(false)
-        // }
+            if (responseData.success) {
+                toast.success(responseData.message)
+                if (fetchCartItem) {
+                    fetchCartItem()
+                }
+            }
+        } catch (error) {
+            AxiosToastError(error)
+        } finally {
+            setLoading(false)
+        }
 
     }
 

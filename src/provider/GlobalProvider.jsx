@@ -33,7 +33,7 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
-    const increaseQty = async(id, qty) =>{
+    const updateCartItem = async(id, qty) =>{
         try {
             const res = await axios({
                 ...SummaryApi.updateCartItem,
@@ -57,10 +57,11 @@ const GlobalProvider = ({ children }) => {
 
     useEffect(() => {
         fetchCartItem()
+        updateCartItem()
     }, [])
 
     return (
-        <GlobalContext.Provider value={{fetchCartItem, increaseQty}}>
+        <GlobalContext.Provider value={{fetchCartItem, updateCartItem}}>
             {children}
         </GlobalContext.Provider>
     )

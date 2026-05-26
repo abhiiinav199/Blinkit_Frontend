@@ -12,7 +12,7 @@ import { useGlobalContext } from "../provider/GlobalProvider";
 
 const CardProduct = ({ data }) => {
   const [loading, setLoading] = useState(false)
-  const {fetchCartItem} = useGlobalContext()
+  const {fetchCartItem, updateCartItem} = useGlobalContext()
   const url = `/product/${ValidUrlConvert(data.name)}-${data._id}`;
 
   const handleAddToCart= async(e) =>{
@@ -46,6 +46,8 @@ const CardProduct = ({ data }) => {
     }
   }
   
+const increaseQty = () =>{}
+
   return (
     <Link
       to={url}
