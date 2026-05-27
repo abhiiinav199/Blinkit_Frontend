@@ -11,7 +11,7 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 const AddToCartButton = ({ data }) => {
     const { fetchCartItem, updateCartItem, deleteCartItem } = useGlobalContext()
     const [loading, setLoading] = useState(false)
-    const cartItem = useSelector(state => state.cartItem.cart)
+    const cartItem = useSelector(state => state?.cartItem.cart)
     const [isAvailableCart, setIsAvailableCart] = useState(false)
     const [qty, setQty] = useState(0)
     const [cartItemDetails, setCartItemsDetails] = useState()
@@ -31,9 +31,10 @@ const AddToCartButton = ({ data }) => {
             })
 
             const { data: responseData } = response
+            const {success, message} = responseData
 
-            if (responseData.success) {
-                toast.success(responseData.message)
+            if (success) {
+                toast.success(message)
                 if (fetchCartItem) {
                     fetchCartItem()
                 }
@@ -48,10 +49,10 @@ const AddToCartButton = ({ data }) => {
 
     // checking this item in cart or not
     useEffect(() => {
-        const checkingitem = cartItem.some(item => item.productId._id === data._id)
+        const checkingitem = cartItem.some(item => item?.productId?._id === data?._id)
         setIsAvailableCart(checkingitem)
 
-        const product = cartItem.find(item => item.productId._id === data._id)
+        const product = cartItem.find(item => item?.productId?._id === data?._id)
         setQty(product?.quantity)
         setCartItemsDetails(product)
     }, [data, cartItem])
