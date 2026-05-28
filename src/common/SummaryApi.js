@@ -123,6 +123,10 @@ export const SummaryApi = {
     updateCartItem:{
         url: "/api/cart/update-qty",
         method: "put"
+    },
+    deleteCartItem:{
+        url: "/api/cart/delete",
+        method: "delete"
     }
 
 
