@@ -126,7 +126,7 @@ export const SummaryApi = {
     },
     deleteCartItem:{
         url: "/api/cart/delete",
-        method: "delete"
+        method: "delete" 
     }
 
 
