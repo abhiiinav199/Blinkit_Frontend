@@ -68,8 +68,7 @@ const GlobalProvider = ({ children }) => {
             })
 
             const {data : responseData} = res
-            const {success, message} = responseData
-            console.log("repsonse" , responseData)
+            const {success} = responseData
 
             if(success){
                 // toast?.success(message)
