@@ -22,7 +22,6 @@ const Header = () => {
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQty, setTotalQty] = useState(0)
   const cartItems = useSelector((state) => state?.cartItem?.cart)
-  console.log("cartItems", cartItems)
 
 
   // console.log("user from redux stores file Header.jsx", user)  

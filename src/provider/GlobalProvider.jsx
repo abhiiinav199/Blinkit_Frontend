@@ -43,13 +43,17 @@ const GlobalProvider = ({ children }) => {
                 }
             })
 
-            const {data : respsonseData} = res
-            const {success, message} = respsonseData
+            const {data : responseData} = res
+            const {success, message} = responseData
+            console.log("repsonse" , responseData)
 
             if(success){
-                toast.success(message)
+                // toast?.success(message)
                 fetchCartItem()
             }
+
+            return responseData
+            
         } catch (error) {
             // AxiosToastError(error)
         }
