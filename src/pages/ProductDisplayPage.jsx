@@ -103,7 +103,7 @@ const ProductDisplayPage = () => {
                   >
                     <img
                       src={img}
-                      alt="min-product"
+                      alt="min-product" 
                       onClick={() => setImageIndex(index)}
                       className="w-full h-full object-scale-down"
                     />
