@@ -101,7 +101,8 @@ const GlobalProvider = ({ children }) => {
         setTotalQty(qty)
 
         const tPrice = cartItems.reduce((prev, curr) => {
-            return prev + (PriceWithDiscount(curr?.productId?.price, curr?.productId?.discount) * curr?.quantity)
+            const priceAfterDiscount = PriceWithDiscount(curr?.productId?.price, curr?.productId?.discount)
+            return prev + (priceAfterDiscount * curr?.quantity)
         }, 0)
         setTotalPrice(tPrice)
     }, [cartItems])

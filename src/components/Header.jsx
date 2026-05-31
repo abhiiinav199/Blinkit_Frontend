@@ -21,6 +21,7 @@ const Header = () => {
   const user = useSelector((state) => state?.user)
   const [openUserMenu, setopenUserMenu] = useState(false)
   
+  
   // const [totalPrice, setTotalPrice] = useState(0) // Doing this from GlobalContext
   // const [totalQty, setTotalQty] = useState(0) // Doing this from GlobalContext
   
