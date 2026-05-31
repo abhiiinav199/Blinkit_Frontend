@@ -19,8 +19,8 @@ const Header = () => {
   const isSearchPage = location.pathname === '/search'
   const user = useSelector((state) => state?.user)
   const [openUserMenu, setopenUserMenu] = useState(false)
-  const [totalPrice, setTotalPrice] = useState(0)
-  const [totalQty, setTotalQty] = useState(0)
+  // const [totalPrice, setTotalPrice] = useState(0)
+  // const [totalQty, setTotalQty] = useState(0)
   const cartItems = useSelector((state) => state?.cartItem?.cart)
 
 

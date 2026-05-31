@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { setCartItem } from "../Slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { SummaryApi } from "../common/SummaryApi";
@@ -14,6 +14,8 @@ export const useGlobalContext = () => useContext(GlobalContext)
 
 const GlobalProvider = ({ children }) => {
     const dispatch = useDispatch()
+    const [totalPrice, setTotalPrice] = useState(0)
+    const [totalQty, setTotalQty] = useState(0)
 
     const fetchCartItem = async () => {
         try {
@@ -33,49 +35,49 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
-    const updateCartItem = async(id, qty) =>{
+    const updateCartItem = async (id, qty) => {
         try {
             const res = await axios({
                 ...SummaryApi.updateCartItem,
-                data:{
-                    _id : id,
+                data: {
+                    _id: id,
                     qty: qty
                 }
             })
 
-            const {data : responseData} = res
-            const {success, message} = responseData
+            const { data: responseData } = res
+            const { success, message } = responseData
 
-            if(success){
+            if (success) {
                 // toast?.success(message)
                 fetchCartItem()
             }
 
             return responseData
-            
+
         } catch (error) {
             // AxiosToastError(error)
         }
     }
-    const deleteCartItem = async(cartId) =>{
+    const deleteCartItem = async (cartId) => {
         try {
             const res = await axios({
                 ...SummaryApi.deleteCartItem,
-                data:{
-                    _id : cartId
+                data: {
+                    _id: cartId
                 }
             })
 
-            const {data : responseData} = res
-            const {success} = responseData
+            const { data: responseData } = res
+            const { success } = responseData
 
-            if(success){
+            if (success) {
                 // toast?.success(message)
                 fetchCartItem()
             }
 
             return responseData
-            
+
         } catch (error) {
             // AxiosToastError(error)
         }
@@ -88,7 +90,7 @@ const GlobalProvider = ({ children }) => {
     }, [])
 
     return (
-        <GlobalContext.Provider value={{fetchCartItem, updateCartItem, deleteCartItem}}>
+        <GlobalContext.Provider value={{ fetchCartItem, updateCartItem, deleteCartItem, totalPrice, setTotalPrice, totalQty, setTotalQty }}>
             {children}
         </GlobalContext.Provider>
     )
