@@ -10,6 +10,7 @@ import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { useEffect, useState } from "react"
 import UsersMenu from "./UsersMenu"
 import DisplayPriceInRupees from "../utils/DisplayPriceInRupees"
+import { useGlobalContext } from "../provider/GlobalProvider"
 
 
 const Header = () => {
@@ -19,12 +20,15 @@ const Header = () => {
   const isSearchPage = location.pathname === '/search'
   const user = useSelector((state) => state?.user)
   const [openUserMenu, setopenUserMenu] = useState(false)
-  // const [totalPrice, setTotalPrice] = useState(0)
-  // const [totalQty, setTotalQty] = useState(0)
+  
+  // const [totalPrice, setTotalPrice] = useState(0) // Doing this from GlobalContext
+  // const [totalQty, setTotalQty] = useState(0) // Doing this from GlobalContext
+  
   const cartItems = useSelector((state) => state?.cartItem?.cart)
 
+  const {totalPrice , totalQty} = useGlobalContext()
 
-  // console.log("user from redux stores file Header.jsx", user)  
+
   const redirecttoLoginPage = () => {
     navigate("/login")
   }
@@ -39,19 +43,19 @@ const Header = () => {
     navigate("/user")
   }
 
-  // total item and total price
-  useEffect(() => {
+  // Doing this from GlobalContext- total item and total price -
+  // useEffect(() => {
     
-    const qty = cartItems.reduce((prev, curr) =>{
-      return prev + curr.quantity
-    },0)
-    setTotalQty(qty)
+  //   const qty = cartItems.reduce((prev, curr) =>{
+  //     return prev + curr.quantity
+  //   },0)
+  //   setTotalQty(qty)
 
-    const totalPrice = cartItems.reduce((prev, curr) =>{
-      return prev + (curr.productId.price * curr.quantity)
-    },0)
-    setTotalPrice(totalPrice)
-  }, [cartItems])
+  //   const totalPrice = cartItems.reduce((prev, curr) =>{
+  //     return prev + (curr.productId.price * curr.quantity)
+  //   },0)
+  //   setTotalPrice(totalPrice)
+  // }, [cartItems])
 
 
 
