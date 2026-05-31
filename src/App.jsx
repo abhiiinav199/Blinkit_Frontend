@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEffect } from "react";
 import Routing from "./routes/Routing";
 import { Toaster } from "react-hot-toast";
@@ -9,8 +8,7 @@ import { setAllCategory, setAllSubCategory, setLoadingCategory } from "./Slice/p
 import axios from "./utils/axios";
 import { SummaryApi } from "./common/SummaryApi";
 import fetchCategory from "./utils/fetchCategory";
-import AxiosToastError from "./utils/AxiosToastError";
-import { setCartItem } from "./Slice/cartSlice";
+import CartMobileLink from "./components/CartMobile";
 
 const App = () => {
   const dispatch = useDispatch();

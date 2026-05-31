@@ -122,7 +122,7 @@ const Header = () => {
 
                   )
                 }
-                <button className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-3 cursor-pointer rounded text-white">
+                <button className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 cursor-pointer rounded text-white">
 
                   {/* Add to cart icon */}
                   <div className="animate-bounce">

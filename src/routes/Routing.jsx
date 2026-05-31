@@ -23,12 +23,14 @@ import AdminPermision from "../layout/AdminPermision"
 import ProductListPage from "../pages/ProductListPage"
 import ProductDisplayPage from "../pages/ProductDisplayPage"
 import GlobalProvider from "../provider/GlobalProvider"
+import CartMobileLink from "../components/CartMobile"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <GlobalProvider>
     <Header />
     <Outlet /> {/* This renders the matched child route */}
     <Footer />
+    <CartMobileLink/>
   </GlobalProvider>
 );
 
