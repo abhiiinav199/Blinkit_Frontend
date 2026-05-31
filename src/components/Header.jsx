@@ -20,14 +20,13 @@ const Header = () => {
   const isSearchPage = location.pathname === '/search'
   const user = useSelector((state) => state?.user)
   const [openUserMenu, setopenUserMenu] = useState(false)
-  
-  
+  const cartItems = useSelector((state) => state?.cartItem?.cart)
+  const { totalPrice, totalQty } = useGlobalContext()
+  const [openCartSection, setopenCartSection] = useState(false)
   // const [totalPrice, setTotalPrice] = useState(0) // Doing this from GlobalContext
   // const [totalQty, setTotalQty] = useState(0) // Doing this from GlobalContext
-  
-  const cartItems = useSelector((state) => state?.cartItem?.cart)
 
-  const {totalPrice , totalQty} = useGlobalContext()
+
 
 
   const redirecttoLoginPage = () => {
@@ -46,7 +45,7 @@ const Header = () => {
 
   // Doing this from GlobalContext- total item and total price -
   // useEffect(() => {
-    
+
   //   const qty = cartItems.reduce((prev, curr) =>{
   //     return prev + curr.quantity
   //   },0)
@@ -127,7 +126,7 @@ const Header = () => {
 
                   )
                 }
-                <button className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 cursor-pointer rounded text-white">
+                <button onClick={() => setopenCartSection(true)} className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 cursor-pointer rounded text-white">
 
                   {/* Add to cart icon */}
                   <div className="animate-bounce">
@@ -137,7 +136,7 @@ const Header = () => {
                   <div className="font=semibold">
                     {cartItems[0] ? (
                       <div className="">
-                        <p>{totalQty} Items</p> 
+                        <p>{totalQty} Items</p>
                         <p>{DisplayPriceInRupees(totalPrice)}</p>
 
                       </div>
@@ -162,6 +161,12 @@ const Header = () => {
       <div className="container mx-auto mt-5 lg:mt-0 md:mt-0 px-2 lg:hidden">
         <Search />
       </div>
+
+      {
+        openCartSection &&(
+          <DisplayCartItem close={() => setopenCartSection(false)}/>
+        )
+      }
 
     </header>
 
