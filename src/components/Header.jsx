@@ -134,7 +134,7 @@ const Header = () => {
                     <BsCart4 size={26} />
                   </div>
 
-                  <div className="font=semibold">
+                  <div className="font-semibold text-sm">
                     {cartItems[0] ? (
                       <div className="">
                         <p>{totalQty} Items</p>

@@ -24,7 +24,7 @@ import ProductListPage from "../pages/ProductListPage"
 import ProductDisplayPage from "../pages/ProductDisplayPage"
 import GlobalProvider from "../provider/GlobalProvider"
 import CartMobileLink from "../components/CartMobile"
-import DisplayCartItem from "../components/DisplayCartItem"
+import CartMobile from "../pages/CartMobile"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <GlobalProvider>
@@ -51,7 +51,7 @@ const Routing = () => {
           <Route path="verify-otp" element={<OtpVerification />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="user" element={<UserMenuMobile />} />
-          <Route path="cart" element={DisplayCartItem} />
+          <Route path="cart" element={<CartMobile />} />
 
           {/* Dashboard Routes */}
           <Route path="dashboard" element={

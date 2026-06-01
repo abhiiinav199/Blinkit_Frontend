@@ -1,8 +1,11 @@
-import React from 'react'
+import DisplayCartItem from '../components/DisplayCartItem'
 
 const CartMobile = () => {
   return (
-    <div>CartMobile</div>
+    <div  className='min-h-[78vh] container mx-auto'>
+        <DisplayCartItem/>
+
+    </div>
   )
 }
 
