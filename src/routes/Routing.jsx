@@ -24,19 +24,20 @@ import ProductListPage from "../pages/ProductListPage"
 import ProductDisplayPage from "../pages/ProductDisplayPage"
 import GlobalProvider from "../provider/GlobalProvider"
 import CartMobileLink from "../components/CartMobile"
+import DisplayCartItem from "../components/DisplayCartItem"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <GlobalProvider>
     <Header />
     <Outlet /> {/* This renders the matched child route */}
     <Footer />
-    <CartMobileLink/>
+    <CartMobileLink />
   </GlobalProvider>
 );
 
 const Routing = () => {
-    return (
-      <>
+  return (
+    <>
       <Routes>
         {/* Routes that need header and footer */}
         <Route path="/" element={<Layout />} >
@@ -50,54 +51,55 @@ const Routing = () => {
           <Route path="verify-otp" element={<OtpVerification />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="user" element={<UserMenuMobile />} />
+          <Route path="cart" element={DisplayCartItem} />
 
           {/* Dashboard Routes */}
           <Route path="dashboard" element={
-            
+
             <ProtectedRoute>
-            <Dashboard />
-             </ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
           }>
 
-           <Route path="category" element={
-            
-            <AdminPermision>
-              <CategoryPage/>
-            </AdminPermision>
-            
-            }/>
+            <Route path="category" element={
+
+              <AdminPermision>
+                <CategoryPage />
+              </AdminPermision>
+
+            } />
             <Route path="subcategory" element={
 
               <AdminPermision>
-                <SubCategory/>
+                <SubCategory />
               </AdminPermision>
 
-            }/>
+            } />
             <Route path="upload-product" element={
 
               <AdminPermision>
-                <UploadProduct/>
+                <UploadProduct />
               </AdminPermision>
 
-            }/>
+            } />
             <Route path="product" element={
 
               <AdminPermision>
-                <ProductAdmin/>
+                <ProductAdmin />
               </AdminPermision>
 
-            }/>
-            <Route path="profile" element={<Profile/>}/>
+            } />
+            <Route path="profile" element={<Profile />} />
             <Route path="myorders" element={<MyOrders
-            />}/>
-            <Route path="address" element={<Address/>}/>
-           
+            />} />
+            <Route path="address" element={<Address />} />
+
           </Route>
 
           {/* Product List Page Route */}
           <Route path=":category/:subCategory" element={<ProductListPage />} />
-          
-          <Route path="product/:product" element={<ProductDisplayPage />}/>
+
+          <Route path="product/:product" element={<ProductDisplayPage />} />
 
         </Route>
 
@@ -106,12 +108,12 @@ const Routing = () => {
 
       </Routes>
 
- </>
+    </>
   )
 }
 
 export default Routing
- 
+
 
 
 
