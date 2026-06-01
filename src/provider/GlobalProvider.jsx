@@ -17,6 +17,7 @@ const GlobalProvider = ({ children }) => {
     const dispatch = useDispatch()
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalQty, setTotalQty] = useState(0)
+    const [notDiscountPrice, setnotDiscountPrice] = useState(0)
     const cartItems = useSelector((state) => state?.cartItem?.cart)
 
 
@@ -105,10 +106,15 @@ const GlobalProvider = ({ children }) => {
             return prev + (priceAfterDiscount * curr?.quantity)
         }, 0)
         setTotalPrice(tPrice)
+
+        const notDiscountPrice = cartItems.reduce((prev, curr) =>{
+            return prev + (curr?.productId?.price * curr?.quantity)
+        },0)
+        setnotDiscountPrice(notDiscountPrice)        
     }, [cartItems])
 
     return (
-        <GlobalContext.Provider value={{ fetchCartItem, updateCartItem, deleteCartItem, totalPrice, setTotalPrice, totalQty, setTotalQty }}>
+        <GlobalContext.Provider value={{ fetchCartItem, updateCartItem, deleteCartItem, totalPrice, setTotalPrice, totalQty, setTotalQty, notDiscountPrice }}>
             {children}
         </GlobalContext.Provider>
     )
