@@ -25,6 +25,7 @@ import ProductDisplayPage from "../pages/ProductDisplayPage"
 import GlobalProvider from "../provider/GlobalProvider"
 import CartMobileLink from "../components/CartMobile"
 import CartMobile from "../pages/CartMobile"
+import CheckoutPage from "../pages/CheckoutPage"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <GlobalProvider>
@@ -52,6 +53,7 @@ const Routing = () => {
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="user" element={<UserMenuMobile />} />
           <Route path="cart" element={<CartMobile />} />
+          <Route path="checkout" element={<CheckoutPage/>}/>
 
           {/* Dashboard Routes */}
           <Route path="dashboard" element={
