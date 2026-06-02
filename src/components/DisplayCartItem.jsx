@@ -12,8 +12,8 @@ import PriceWithDiscount from '../utils/PriceWithDiscount';
 
 const DisplayCartItem = ({ close }) => {
     const { notDiscountTotalPrice, totalPrice, totalQty } = useGlobalContext()
-    const cartItem = useSelector(state => state.cartItem.cart)
-    const user = useSelector(state => state.user)
+    const cartItem = useSelector(state => state?.cartItem?.cart)
+    const user = useSelector(state => state?.user)
     const navigate = useNavigate()
 
     const redirectToCheckoutPage = () => {

@@ -19,6 +19,7 @@ const GlobalProvider = ({ children }) => {
     const [totalQty, setTotalQty] = useState(0)
     const [notDiscountTotalPrice, setnotDiscountTotalPrice] = useState(0)
     const cartItems = useSelector((state) => state?.cartItem?.cart)
+    const user = useSelector((state)=> state?.user)
 
 
     const fetchCartItem = async () => {
@@ -89,8 +90,8 @@ const GlobalProvider = ({ children }) => {
 
     useEffect(() => {
         fetchCartItem()
-        updateCartItem()
-        deleteCartItem()
+        // updateCartItem()
+        // deleteCartItem()
     }, [])
 
     // total item and total price
@@ -112,6 +113,20 @@ const GlobalProvider = ({ children }) => {
         },0)
         setnotDiscountTotalPrice(notDiscountPrice)        
     }, [cartItems])
+
+
+    const handleLogout = () =>{
+        localStorage.clear()
+        dispatch(setCartItem([]))
+    }
+
+    useEffect(() => {
+     fetchCartItem()
+     handleLogout()
+    }, [user])
+    
+
+    
 
     return (
         <GlobalContext.Provider value={{ fetchCartItem, updateCartItem, deleteCartItem, totalPrice, setTotalPrice, totalQty, setTotalQty, notDiscountTotalPrice }}>
