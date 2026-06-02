@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import { useGlobalContext } from '../provider/GlobalProvider'
-import { DisplayPriceInRupees } from '../utils/DisplayPriceInRupees'
 // import AddAddress from '../components/AddAddress'
 import { useSelector } from 'react-redux'
 import AxiosToastError from '../utils/AxiosToastError'
 // import Axios from '../utils/Axios'
-import SummaryApi from '../common/SummaryApi'
+import {SummaryApi} from '../common/SummaryApi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import DisplayPriceInRupees from '../utils/DisplayPriceInRupees'
 // import { loadStripe } from '@stripe/stripe-js'
 
 const CheckoutPage = () => {
   const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem,fetchOrder } = useGlobalContext()
   const [openAddress, setOpenAddress] = useState(false)
-  const addressList = useSelector(state => state.addresses.addressList)
+//   const addressList = useSelector(state => state.addresses.addressList)
   const [selectAddress, setSelectAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItem.cart)
   const navigate = useNavigate()
@@ -83,13 +83,14 @@ const CheckoutPage = () => {
     }
   }
   return (
-    <section className='bg-blue-50'>
+    <section className='h-[calc(80vh-56px)]'>
+         <section className='bg-blue-50'>
       <div className='container mx-auto p-4 flex flex-col lg:flex-row w-full gap-5 justify-between'>
         <div className='w-full'>
           {/***address***/}
           <h3 className='text-lg font-semibold'>Choose your address</h3>
           <div className='bg-white p-2 grid gap-4'>
-            {
+            {/* {
               addressList.map((address, index) => {
                 return (
                   <label htmlFor={"address" + index} className={!address.status && "hidden"}>
@@ -108,7 +109,7 @@ const CheckoutPage = () => {
                   </label>
                 )
               })
-            }
+            } */}
             <div onClick={() => setOpenAddress(true)} className='h-16 bg-blue-50 border-2 border-dashed flex justify-center items-center cursor-pointer'>
               Add address
             </div>
@@ -155,6 +156,8 @@ const CheckoutPage = () => {
         )
       } */}
     </section>
+    </section>
+   
   )
 }
 
