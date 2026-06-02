@@ -3,7 +3,7 @@ import { useGlobalContext } from '../provider/GlobalProvider'
 // import AddAddress from '../components/AddAddress'
 import { useSelector } from 'react-redux'
 import AxiosToastError from '../utils/AxiosToastError'
-// import Axios from '../utils/Axios'
+import axios from '../utils/axios'
 import {SummaryApi} from '../common/SummaryApi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
@@ -20,7 +20,7 @@ const CheckoutPage = () => {
 
   const handleCashOnDelivery = async() => {
       try {
-          const response = await Axios({
+          const response = await axios({
             ...SummaryApi.CashOnDeliveryOrder,
             data : {
               list_items : cartItemsList,
