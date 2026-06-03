@@ -1,4 +1,3 @@
-import React from 'react'
 import { useForm } from "react-hook-form"
 import axios from "../utils/axios"
 import {SummaryApi} from '../common/SummaryApi'
@@ -42,11 +41,11 @@ const AddAddress = ({close}) => {
         }
     }
   return (
-    <section className='bg-black fixed top-0 left-0 right-0 bottom-0 z-50 bg-opacity-70 h-screen overflow-auto'>
+    <section className='bg-black/70 fixed top-0 left-0 right-0 bottom-0 z-50  h-screen overflow-auto'>
         <div className='bg-white p-4 w-full max-w-lg mt-8 mx-auto rounded'>
             <div className='flex justify-between items-center gap-4'>
                 <h2 className='font-semibold'>Add Address</h2>
-                <button onClick={close} className='hover:text-red-500'>
+                <button onClick={close} className='hover:text-red-500 cursor-pointer'>
                     <IoClose  size={25}/>
                 </button>
             </div>
@@ -106,7 +105,7 @@ const AddAddress = ({close}) => {
                     />
                 </div>
 
-                <button type='submit' className='bg-primary-200 w-full  py-2 font-semibold mt-4 hover:bg-primary-100'>Submit</button>
+                <button type='submit' className='bg-primary-200 w-full  py-2 font-semibold mt-4 hover:bg-primary-100 cursor-pointer'>Submit</button>
             </form>
         </div>
     </section>

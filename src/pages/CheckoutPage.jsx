@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useGlobalContext } from '../provider/GlobalProvider'
-// import AddAddress from '../components/AddAddress'
+import AddAddress from '../components/AddAddress'
 import { useSelector } from 'react-redux'
 import AxiosToastError from '../utils/AxiosToastError'
 import axios from '../utils/axios'
@@ -150,11 +150,11 @@ const CheckoutPage = () => {
       </div>
 
 
-      {/* {
+      {
         openAddress && (
           <AddAddress close={() => setOpenAddress(false)} />
         )
-      } */}
+      }
     </section>
     </section>
    
