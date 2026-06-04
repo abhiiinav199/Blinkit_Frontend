@@ -116,20 +116,24 @@ export const SummaryApi = {
         url: "/api/cart/create",
         method: "post"
     },
-    getCartItem:{
-        url : "/api/cart/get",
+    getCartItem: {
+        url: "/api/cart/get",
         method: "get"
     },
-    updateCartItem:{
+    updateCartItem: {
         url: "/api/cart/update-qty",
         method: "put"
     },
-    deleteCartItem:{
+    deleteCartItem: {
         url: "/api/cart/delete",
-        method: "delete" 
+        method: "delete"
     },
-    createAddress:{
-        url : "/api/address/create",
+    createAddress: {
+        url: "/api/address/create",
+        method: "post"
+    },
+    getAddress: {
+        api: "/api/address/get",
         method: "post"
     }
 
