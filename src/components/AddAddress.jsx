@@ -27,9 +27,9 @@ const AddAddress = ({close}) => {
             })
 
             const { data : responseData } = response
-            
-            if(responseData.success){
-                toast.success(responseData.message)
+            const {success, message} = responseData
+            if(success){
+                toast.success(message)
                 if(close){
                     close()
                     reset()
