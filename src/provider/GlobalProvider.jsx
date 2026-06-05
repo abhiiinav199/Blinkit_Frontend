@@ -133,7 +133,7 @@ const GlobalProvider = ({ children }) => {
 
             }
         } catch (error) {
-            AxiosToastError(error)
+            // AxiosToastError(error)
         }
     }
 
