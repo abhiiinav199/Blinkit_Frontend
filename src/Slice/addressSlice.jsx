@@ -5,8 +5,8 @@ const initialValue ={
 }
 
 const addressSlice= createSlice({
-    name:"addresss",
-    initialStateL: initialValue,
+    name:"address",
+    initialState: initialValue,
     reducers:{
         handleAddAddress : (state, action)=>{
             state.address_list= [...action.payload]
