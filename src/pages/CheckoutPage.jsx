@@ -17,8 +17,6 @@ const CheckoutPage = () => {
   const [selectAddress, setSelectAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItem.cart)
   const navigate = useNavigate()
-  console.log(addressList)
-
   const handleCashOnDelivery = async() => {
       try {
           const response = await axios({
