@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialValue ={
-    address_list:[]
+    addressList:[]
 }
 
 const addressSlice= createSlice({

@@ -13,10 +13,11 @@ import DisplayPriceInRupees from '../utils/DisplayPriceInRupees'
 const CheckoutPage = () => {
   const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem,fetchOrder } = useGlobalContext()
   const [openAddress, setOpenAddress] = useState(false)
-//   const addressList = useSelector(state => state.addresses.addressList)
+  const addressList = useSelector(state => state?.address?.addressList)
   const [selectAddress, setSelectAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItem.cart)
   const navigate = useNavigate()
+  console.log(addressList)
 
   const handleCashOnDelivery = async() => {
       try {
@@ -90,8 +91,8 @@ const CheckoutPage = () => {
           {/***address***/}
           <h3 className='text-lg font-semibold'>Choose your address</h3>
           <div className='bg-white p-2 grid gap-4'>
-            {/* {
-              addressList.map((address, index) => {
+            {
+              addressList?.map((address, index) => {
                 return (
                   <label htmlFor={"address" + index} className={!address.status && "hidden"}>
                     <div className='border rounded p-3 flex gap-3 hover:bg-blue-50'>
@@ -109,7 +110,7 @@ const CheckoutPage = () => {
                   </label>
                 )
               })
-            } */}
+            }
             <div onClick={() => setOpenAddress(true)} className='h-16 bg-blue-50 border-2 border-dashed flex justify-center items-center cursor-pointer'>
               Add address
             </div>
