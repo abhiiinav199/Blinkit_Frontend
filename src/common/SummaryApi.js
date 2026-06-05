@@ -133,8 +133,8 @@ export const SummaryApi = {
         method: "post"
     },
     getAddress: {
-        api: "/api/address/get",
-        method: "post"
+        url: "/api/address/get",
+        method: "get"
     }
 
 

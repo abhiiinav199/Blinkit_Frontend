@@ -127,7 +127,7 @@ const GlobalProvider = ({ children }) => {
                 ...SummaryApi.getAddress
             })
             const { data: responseData } = res
-            const { success, error } = responseData
+            const { success } = responseData
             if (success) {
                 dispatch(handleAddAddress(responseData?.data))
 
