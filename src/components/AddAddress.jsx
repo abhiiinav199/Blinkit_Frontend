@@ -17,7 +17,7 @@ const AddAddress = ({close}) => {
             const response = await axios({
                 ...SummaryApi.createAddress,
                 data : {
-                    address_line :data.addressline,
+                    address_line : data.address_line,
                     city : data.city,
                     state : data.state,
                     country : data.country,
@@ -56,7 +56,7 @@ const AddAddress = ({close}) => {
                         type='text'
                         id='addressline' 
                         className='border bg-blue-50 p-2 rounded'
-                        {...register("addressline",{required : true})}
+                        {...register("address_line",{required : true})}
                     />
                 </div>
                 <div className='grid gap-1'>
