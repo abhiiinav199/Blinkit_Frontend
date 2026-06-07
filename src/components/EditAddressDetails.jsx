@@ -21,7 +21,6 @@ const EditAddressDetails = ({close, data}) => {
         }
     })
     const { fetchAddress } = useGlobalContext()
-    console.log("prop data from Edit Address", data)
 
     const onSubmit = async(data)=>{
         try {
