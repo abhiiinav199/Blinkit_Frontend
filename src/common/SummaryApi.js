@@ -135,7 +135,11 @@ export const SummaryApi = {
     getAddress: {
         url: "/api/address/get",
         method: "get"
-    }
+    },
+    updateAddress:{
+        url: "/api/address/update",
+        method: "put"
+    },
 
 
 
