@@ -4,7 +4,7 @@ import AddAddress from '../components/AddAddress'
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import EditAddressDetails from '../components/EditAddressDetails';
-import Axios from '../utils/Axios';
+import axios from '../utils/axios';
 import {SummaryApi} from '../common/SummaryApi';
 import toast from 'react-hot-toast';
 import AxiosToastError from '../utils/AxiosToastError';
@@ -20,7 +20,7 @@ const Address = () => {
 
   const handleDisableAddress = async(id)=>{
     try {
-      const response = await Axios({
+      const response = await axios({
         ...SummaryApi.disableAddress,
         data : {
           _id : id
