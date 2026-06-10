@@ -20,13 +20,15 @@ const Address = () => {
 
   const handleDisableAddress = async(id)=>{
     try {
-      const response = await axios({
+      const res = await axios({
         ...SummaryApi.disableAddress,
         data : {
           _id : id
         }
       })
-      if(response.data.success){
+      const {data: responseData}= res
+      const {success} = responseData
+      if(success){
         toast.success("Address Remove")
         if(fetchAddress){
           fetchAddress()
