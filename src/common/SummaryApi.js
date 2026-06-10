@@ -140,6 +140,10 @@ export const SummaryApi = {
         url: "/api/address/update",
         method: "put"
     },
+    disableAddress:{
+        url: "/api/address/delete",
+        method: "delete"
+    },
 
 
 
