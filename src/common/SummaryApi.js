@@ -144,6 +144,10 @@ export const SummaryApi = {
         url: "/api/address/delete",
         method: "delete"
     },
+    cashOnDeliveryOrder: {
+        url: "/api/order/cash-on-delivery",
+        method: "post"
+    },
 
 
 
