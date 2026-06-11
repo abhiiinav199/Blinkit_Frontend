@@ -26,6 +26,7 @@ import GlobalProvider from "../provider/GlobalProvider"
 import CartMobileLink from "../components/CartMobile"
 import CartMobile from "../pages/CartMobile"
 import CheckoutPage from "../pages/CheckoutPage"
+import Success from "../pages/Success"
 // Layout component that includes Header and Footer
 const Layout = () => (
   <GlobalProvider>
@@ -102,6 +103,8 @@ const Routing = () => {
           <Route path=":category/:subCategory" element={<ProductListPage />} />
 
           <Route path="product/:product" element={<ProductDisplayPage />} />
+
+          <Route path="/success" element={< Success/>}/>
 
         </Route>
 
