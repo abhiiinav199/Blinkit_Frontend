@@ -15,8 +15,9 @@ const CheckoutPage = () => {
   const [openAddress, setOpenAddress] = useState(false)
   const addressList = useSelector(state => state?.addresses?.addressList)
   const [selectAddress, setSelectAddress] = useState(0)
-  const cartItemsList = useSelector(state => state.cartItem.cart)
+  const cartItemsList = useSelector(state => state?.cartItem?.cart)
   const navigate = useNavigate()
+  console.log("addressList grom checkout.jsx",addressList[selectAddress])
   const handleCashOnDelivery = async() => {
       try {
           const response = await axios({
