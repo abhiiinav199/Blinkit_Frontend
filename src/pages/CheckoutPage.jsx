@@ -20,7 +20,7 @@ const CheckoutPage = () => {
   const handleCashOnDelivery = async() => {
       try {
           const response = await axios({
-            ...SummaryApi.CashOnDeliveryOrder,
+            ...SummaryApi.cashOnDeliveryOrder,
             data : {
               list_items : cartItemsList,
               addressId : addressList[selectAddress]?._id,
