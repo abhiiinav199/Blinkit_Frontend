@@ -17,7 +17,7 @@ const CheckoutPage = () => {
   const [selectAddress, setSelectAddress] = useState(0)
   const cartItemsList = useSelector(state => state?.cartItem?.cart)
   const navigate = useNavigate()
-  console.log("addressList grom checkout.jsx",addressList[selectAddress])
+
   const handleCashOnDelivery = async() => {
       try {
           const response = await axios({
@@ -58,7 +58,7 @@ const CheckoutPage = () => {
         const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
         const stripePromise = await loadStripe(stripePublicKey)
        
-        const response = await Axios({
+        const res = await axios({
             ...SummaryApi.payment_url,
             data : {
               list_items : cartItemsList,
@@ -68,7 +68,7 @@ const CheckoutPage = () => {
             }
         })
 
-        const { data : responseData } = response
+        const { data : responseData } = res
 
         stripePromise.redirectToCheckout({ sessionId : responseData.id })
         
