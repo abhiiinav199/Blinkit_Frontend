@@ -8,7 +8,7 @@ import {SummaryApi} from '../common/SummaryApi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import DisplayPriceInRupees from '../utils/DisplayPriceInRupees'
-// import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 const CheckoutPage = () => {
   const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem,fetchOrder } = useGlobalContext()
@@ -70,7 +70,7 @@ const CheckoutPage = () => {
 
         const { data : responseData } = res
 
-        stripePromise.redirectToCheckout({ sessionId : responseData.id })
+        stripePromise.redirectToCheckout({ sessionId : responseData?.id })
         
         if(fetchCartItem){
           fetchCartItem()
