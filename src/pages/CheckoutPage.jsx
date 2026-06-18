@@ -52,12 +52,11 @@ const CheckoutPage = () => {
       }
   }
 
+
   const handleOnlinePayment = async()=>{
     try {
         toast.loading("Loading...")
-        const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
-        const stripePromise = await loadStripe(stripePublicKey)
-       
+
         const res = await axios({
             ...SummaryApi.payment_url,
             data : {
@@ -69,15 +68,18 @@ const CheckoutPage = () => {
         })
 
         const { data : responseData } = res
+        console.log("responsedata",responseData)
 
-        stripePromise.redirectToCheckout({ sessionId : responseData?.id })
-        
         if(fetchCartItem){
           fetchCartItem()
         }
         if(fetchOrder){
           fetchOrder()
         }
+
+        // Stripe.js no longer supports redirectToCheckout. Use the session URL
+        // returned by the backend to redirect to the hosted Stripe checkout page.
+        window.location.href = responseData?.url
     } catch (error) {
         AxiosToastError(error)
     }
